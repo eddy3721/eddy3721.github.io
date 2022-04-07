@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <link rel="icon" type="image/x-ico" href="image/logo2.png" />
-    <title>我們的測名城123</title>
+    <title>我的托蘭異世錄</title>
 
     <link rel="stylesheet" type="text/css" href="style.css">
     <script type="text/javascript" src="main.js"></script>
@@ -19,173 +19,60 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
-<body onload="header();">
+<body onload="checkLogin();">
     <div class="bg-blue">
-        <div class="css-1ti1qfr">
-            <div class="css-17k7mv4">DC：eddy3721</div>
-            <div class="css-1nwj029" id="header_mid"></div>
-            <div class="css-14xc5av">金錢：
-                <div class="spinner-border spinner-border-sm" role="status">
-                    <span class="sr-only">Loading...</span>
-                </div>
-            </div>
-        </div>
         <div class="header">
             <nav>
-                <a href="index.html">測名計算機</a>
-                <a href="table.html">比較表</a>
-                <a href="refer.html">參考資料</a>
+                <a href="index.html">角色</a>
             </nav>
         </div>
 
         <div class="container bc-white">
             <form>
                 <div class="form-row">
-                    <div class="form-group col-md-4 col-sm-12 col-12">
-                        <label for="input_1">裝備名稱</label>
-                        <input class="form-control" id="input_1" placeholder="大木是菜雞" oninput="show_name();saveBtn();">
+                    <div class="form-group col-md-3 col-sm-12 col-12">
+                        <label id="user_name">名稱 : </label>
                     </div>
-                    <div class=" form-group col-md-2 col-sm-6 col-6">
-                        <label for="input_2">鍛造熟練度</label>
-                        <input class="form-control" type="number" id="input_2" oninput="all_change();saveBtn();">
+                    <div class=" form-group col-md-3 col-sm-4 col-12">
+                        <label id="user_HP">最大HP : </label>
                     </div>
-                    <div class="form-group col-md-2 col-sm-6 col-6">
-                        <label for="input_3">品質</label>
-                        <select id="input_3" class="form-control" style="font-family: naikaifont;" oninput="all_change();">
-                            <option selected>傳說</option>
-                            <option>神話</option>
-                            <option>史詩</option>
-                            <option>頂級</option>
-                            <option>精良</option>
-                            <option>上等</option>
-                            <option>普通</option>
-                            <option>次等</option>
-                            <option>劣質</option>
-                            <option>破爛</option>
-                            <option>垃圾般</option>
-                        </select>
+                    <div class="form-group col-md-3 col-sm-4 col-12">
+                        <label id="user_MP">最大MP : </label>
                     </div>
-                    <div class="form-group col-md-2 col-sm-6 col-6">
-                        <label for="input_4">裝備類型</label>
-                        <select id="input_4" class="form-control" style="font-family: naikaifont;" oninput="all_change();">
-                            <option selected>單手劍</option>
-                            <option>雙手劍</option>
-                            <option>單手球棒</option>
-                            <option>球棒</option>
-                            <option>單手錘</option>
-                            <option>長槍</option>
-                            <option>單手斧</option>
-                            <option>盾牌</option>
-                            <option>十字鎬</option>
-                            <option>水龍頭</option>
-                            <option>口罩</option>
-                            <option>礦靴</option>
-                            <option>礦工帽</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-2 col-sm-6 col-6">
-                        <label for="input_5">材料</label>
-                        <select id="input_5" class="form-control" style="font-family: naikaifont;" oninput="all_change();">
-                            <option selected>桐木</option>
-                            <option>石頭</option>
-                            <option>鐵礦</option>
-                            <option>銅礦</option>
-                            <option>銀礦</option>
-                            <option>金礦</option>
-                            <option>鉑</option>
-                            <option>鑽石</option>
-                            <option>鑽石(盾)</option>
-                            <option>鑽石(單手槌)</option>
-                            <option>好運石</option>
-                            <option>冰龍血</option>
-                            <option>琥珀</option>
-                            <option>強運水晶</option>
-                            <option>死人骨頭</option>
-                            <option>山羊眼</option>
-                            <option>山羊角</option>
-                            <option>山羊皮</option>
-                            <option>山羊骨</option>
-                            <option>黑曜石</option>
-                            <option>黑曜石(銳器)</option>
-                            <option>黑曜石(單手錘)</option>
-                            <option>魔鐵</option>
-                            <option>閃鐵</option>
-                            <option>魔岩</option>
-                            <option>閃岩</option>
-                            <option>魔銀</option>
-                            <option>紅砂岩</option>
-                            <option>牙齒</option>
-                            <option>尖刺腳骨(單手劍)</option>
-                            <option>尖刺腳骨(單手錘)</option>
-                            <option>頭骨</option>
-                            <option>脊椎</option>
-                            <option>尾骨</option>
-                            <option>前爪骨</option>
-                        </select>
+                    <div class="form-group col-md-3 col-sm-4 col-12">
+                        <label id="user_money">眾神幣 : </label>
                     </div>
                 </div>
 
                 <hr class="divider" />
 
                 <div class="form-row">
-                    <div class="form-group col-md-4 col-sm-12 col-12" style="text-align: center;">
-                        <h2>輸入原始數值</h2>
+                    <div class="form-group col-md-3 col-sm-6 col-6">
+                        <label id="user_ATK">ATK : </label>
                     </div>
-                    <div class="form-group col-md-2 col-sm-6 col-6">
-                        <label for="input_6">攻擊力</label>
-                        <input class="form-control" type="number" id="input_6" oninput="atk();saveBtn();">
+                    <div class=" form-group col-md-3 col-sm-6 col-6">
+                        <label id="user_MATK">MATK : </label>
                     </div>
-                    <div class="form-group col-md-2 col-sm-6 col-6">
-                        <label for="input_7">防禦力</label>
-                        <input class="form-control" type="number" id="input_7" oninput="def();saveBtn();">
+                    <div class="form-group col-md-3 col-sm-6 col-6">
+                        <label id="user_DEF">DEF : </label>
                     </div>
-                    <div class="form-group col-md-2 col-sm-6 col-6">
-                        <label for="input_8">挖礦力</label>
-                        <input class="form-control" type="number" id="input_8" oninput="mp();saveBtn();">
-                    </div>
-                    <div class="form-group col-md-2 col-sm-6 col-6">
-                        <label for="input_9">耐久度</label>
-                        <input class="form-control" type="number" id="input_9" oninput="dur();saveBtn();">
+                    <div class="form-group col-md-3 col-sm-6 col-6">
+                        <label id="user_MDEF">MDEF : </label>
                     </div>
                 </div>
-
-                <hr class="divider" />
-
-                <div class="form-row" id="screen_shot">
-                    <div class="form-group col-md-4 col-sm-12 col-12" style="text-align: center;">
-                        <h2>結果</h2>
-                        <p class="gray" id="name_and_type"></p>
+                <div class="form-row">
+                    <div class="form-group col-md-3 col-sm-6 col-6">
+                        <label id="user_HIT">HIT : </label>
                     </div>
-                    <div class="form-group col-md-2 col-sm-6 col-6">
-                        <label for="input_10">攻擊力</label>
-                        <input class="form-control" id="input_10" readonly="readonly" value="0.00">
+                    <div class=" form-group col-md-3 col-sm-6 col-6">
+                        <label id="user_FLEE">FLEE : </label>
                     </div>
-                    <div class="form-group col-md-2 col-sm-6 col-6">
-                        <label for="input_11">防禦力</label>
-                        <input class="form-control" id="input_11" readonly="readonly" value="0.00">
+                    <div class="form-group col-md-3 col-sm-6 col-6">
+                        <label id="user_ASPD">ASPD : </label>
                     </div>
-                    <div class="form-group col-md-2 col-sm-6 col-6">
-                        <label for="input_12">挖礦力</label>
-                        <input class="form-control" id="input_12" readonly="readonly" value="0.00">
+                    <div class="form-group col-md-3 col-sm-6 col-6">
+                        <label id="user_CSPD">CSPD : </label>
                     </div>
-                    <div class="form-group col-md-2 col-sm-6 col-6">
-                        <label for="input_13">耐久度</label>
-                        <input class="form-control" id="input_13" readonly="readonly" value="0.00">
-                    </div>
-                </div>
-                <div class="form-group green-border-focus">
-                    <label for="exampleFormControlTextarea3">複製區<i class="fa-solid fa-circle-question"
-                            onclick="teaching_1();"></i></label>
-                    <textarea class="form-control" id="copy_content" rows="2" style="font-family: naikaifont;" oninput="fast_paste();"></textarea>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-2 col-sm-3 col-4">
-                        <input class="form-control" id="input_14" placeholder="鍛造者" oninput="saveBtn();">
-                    </div>
-                    <button class="btn btn-primary" onclick="send();" type="button" style="font-family: naikaifont;" disabled="disabled" id="save_btn">存入試算表</button>
-                    <button class="btn btn-primary" onclick="screenShot();" type="button" style="font-family: naikaifont;"><i class="fa-solid fa-camera"></i></button>
-                    <button class="btn btn-primary" onclick="copyBtn();" type="button" style="font-family: naikaifont;"><i class="fa-solid fa-clone"></i></button>
                 </div>
             </form>
         </div>
