@@ -1,0 +1,254 @@
+@font-face {
+    font-family: naikaifont;
+    src: url(https://cdn.jsdelivr.net/gh/max32002/naikaifont@1.0/webfont/NaikaiFont-Regular-Lite.woff2) format("woff2"), url(https://cdn.jsdelivr.net/gh/max32002/naikaifont@1.0/webfont/NaikaiFont-Regular-Lite.woff) format("woff");
+}
+
+html,
+body {
+    height: 100%;
+}
+
+.bg-blue {
+    background: linear-gradient(0deg, rgb(163, 207, 239) 0%, rgb(12, 47, 103) 100%);
+    min-height: 100%;
+}
+
+label,
+h2,
+button,
+option,
+p,
+a,
+th {
+    font-family: naikaifont, serif;
+}
+
+label {
+    font-size: large;
+}
+
+.bc-white {
+    border-radius: 8px;
+    margin: 1rem;
+    padding: 1rem;
+    background-color: #fff;
+    overflow-y: auto;
+}
+
+hr.divider {
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.green-border-focus .form-control:focus {
+    border: 1px solid #8bc34a;
+    box-shadow: 0 0 0 0.2rem rgb(139, 195, 74, 25%);
+}
+
+.gray {
+    color: gray;
+}
+
+form {
+    margin: 10px;
+}
+
+.row button {
+    margin-right: 10px;
+}
+
+#show {
+    overflow-x: auto;
+}
+
+.bag_table {
+    width: 100%;
+    min-width: 450px;
+    border-collapse: collapse;
+}
+
+.bag_table tr {
+    border-bottom: #e2e2e2 solid 0.5px;
+}
+
+.bag_column {
+    background-color: rgb(237, 242, 247);
+}
+
+.hover_gray tr:hover {
+    background-color: #f5f5f5;
+}
+
+.css-1ti1qfr {
+    padding-inline: 4%;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 14px;
+    background: rgba(66, 153, 225, 0.6);
+    color: white;
+    padding: 10px;
+    top: 0px;
+    width: 100%;
+    max-height: 25px;
+    z-index: 100;
+}
+
+.css-17k7mv4 {
+    width: 100px;
+}
+
+.header nav {
+    position: relative;
+    left: 0;
+    top: 0;
+    display: flex;
+    height: 100%;
+    width: auto;
+    box-shadow: none;
+}
+
+.header nav a {
+    transition: all 0.15s ease-out 0s;
+    padding-top: 13px;
+    display: block;
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
+    padding: 10px 20px;
+    position: relative;
+}
+
+.header {
+    background-color: #18283a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header nav a:hover {
+    background-color: #2e445e;
+}
+
+th {
+    font-weight: normal;
+}
+
+.progress {
+    margin: 10px;
+}
+
+.mg_bottom_0 {
+    text-align: center;
+    padding-top: 5px;
+}
+
+.fa-circle-question {
+    margin-left: 10px;
+    color: #2961a7;
+}
+
+.bg-atk {
+    background-color: #FF7575!important;
+}
+
+.bg-def {
+    background-color: #66B3FF!important;
+}
+
+.bg-mp {
+    background-color: #FFBB77!important;
+}
+
+.bg-dur {
+    background-color: #8E8E8E!important;
+}
+
+.checkbox_atk {
+    color: #FF7575;
+}
+
+.checkbox_def {
+    color: #66B3FF;
+}
+
+.checkbox_mp {
+    color: #FFBB77;
+}
+
+.checkbox_dur {
+    color: #8E8E8E;
+}
+
+.custom-control {
+    display: inline-flex!important;
+}
+
+#customSwitch1:checked~.custom-control-label::before {
+    color: #fff;
+    border-color: #ee6969!important;
+    background-color: #FF7575!important;
+}
+
+#customSwitch2:checked~.custom-control-label::before {
+    color: #fff;
+    border-color: #5aa3ec!important;
+    background-color: #66B3FF!important;
+}
+
+#customSwitch3:checked~.custom-control-label::before {
+    color: #fff;
+    border-color: #e9a766!important;
+    background-color: #FFBB77!important;
+}
+
+#customSwitch4:checked~.custom-control-label::before {
+    color: #fff;
+    border-color: #7a7a7a!important;
+    background-color: #8E8E8E!important;
+}
+
+#landlord {
+    user-select: none;
+    position: fixed;
+    right: 30px;
+    bottom: 0;
+    width: 280px;
+    height: 250px;
+    z-index: 10000;
+    font-size: 0;
+    transition: all .3s ease-in-out;
+}
+
+#live2d {
+    position: relative;
+}
+
+.message {
+    opacity: 0;
+    width: 300px;
+    height: auto;
+    margin: auto;
+    padding: 7px;
+    top: -80px;
+    left: -10px;
+    text-align: center;
+    border: 1px solid #2961a7;
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255);
+    box-shadow: 0 3px 15px 2px #2961a7;
+    font-size: 13px;
+    font-weight: 400;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    overflow: hidden;
+    position: absolute;
+    animation-delay: 5s;
+    animation-duration: 50s;
+    animation-iteration-count: infinite;
+    animation-name: shake;
+    animation-timing-function: ease-in-out;
+}
