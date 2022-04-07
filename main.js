@@ -102,6 +102,11 @@ async function fighting(n) {
     }
 
     $('.report').append(content);
-    await delay(1);
+    await delay(CD[n]);
     $('#fight_1').attr('disabled', false);
+}
+
+function clear_all() {
+    localStorage.clear();
+    location.href = "login.html";
 }
