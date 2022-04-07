@@ -23,6 +23,11 @@ th {
     font-family: naikaifont, serif;
 }
 
+p {
+    margin-top: 0.5rem!important;
+    margin-bottom: 0.5rem!important;
+}
+
 label {
     font-size: large;
 }
@@ -251,4 +256,35 @@ th {
     animation-iteration-count: infinite;
     animation-name: shake;
     animation-timing-function: ease-in-out;
+}
+
+.explore {
+    margin-bottom: 1rem;
+}
+
+.flex {
+    display: flex;
+}
+
+.explore .flex {
+    align-items: center;
+}
+
+.subtitle {
+    font-size: larger;
+    font-weight: bolder;
+}
+
+.flex p {
+    margin-left: 1rem;
+}
+
+.report .flex {
+    font-size: 16px;
+}
+
+.numberReportLine {
+    color: rgb(153, 153, 153);
+    user-select: none;
+    width: 30px;
 }
