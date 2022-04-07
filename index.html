@@ -1,9 +1,100 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+	<title>我的寶可夢</title>
+	
+    <link rel=stylesheet type="text/css" href="main.css">
 
+    <link href="css/all.css" rel="stylesheet">
+    
+    <script type="text/javascript" src="js/ajax.js"></script>
+   
+</head>
 <body>
-    <h1>Hello World</h1>
-    <p>I'm hosted with GitHub Pages.</p>
+    <input type="checkbox" name="" id="menu_control">
+    <div class="header">
+        <label for="menu_control" class="menu_btn">
+            <div class="ball_top"></div>
+            <div class="ball_center"></div>
+        </label>
+        <nav>
+            <a href="#" onclick = "getData('html/profile.html');">角色</a>
+            <a href="#" onclick = "getData('html/bag.html');">背包</a>
+            <a href="#" onclick = "getData('html/pkm.html');">寶可夢</a>
+            <a href="#" onclick = "getData('html/map.html');">地圖</a>
+            <a href="#">精靈中心</a>
+            <a href="#">釣魚</a>
+            <a href="#">對戰區</a>
+            <a href="#">原野區</a>
+            <a href="#">道館</a>
+        </nav>
+    </div>
+    <div class="content" id="content">
+        <div class="content_window">
+            <div class="flex">
+                <div class="block">
+                    <img src="./images/larmes_black.png">
+                </div>
+                <div>
+                    <div class="player_name">
+                        <p>阿淚</p>
+                    </div>
+                    <div class="rwd_profile">
+                        <div style="flex: 1;">
+                            <div class="border">
+                                <p>菜鳥訓練師</p>
+                            </div>
+                            <div class="border">
+                                <div>
+                                    <img src="./images/001.png">
+                                    <img src="./images/002.png">
+                                    <img src="./images/003.png">
+                                </div>
+                                <div>
+                                    <img src="./images/004.png">
+                                    <img src="./images/005.png">
+                                    <img src="./images/006.png">
+                                </div>
+                            </div>
+                        </div>
+                        <div style="flex: 1;">
+                            <div class="border">
+                                <p>勝場 48763</p>
+                            </div>
+                            <div class="border">
+                                <p>敗場 48763</p>
+                            </div>
+                            <div class="border">
+                                <p>收服 48763</p>
+                            </div>
+                            <div class="border">
+                                <p>放生 48763</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="explore">
+                <div class="title">
+                    <h3>探索</h3>
+                </div>
+                <div>
+                    <p>你現在的位置 : 真心鎮(關都地區)。</p>
+                </div>
+                <div class="two_btn">
+                    <div class="flex">
+                        <button type="button" class="btn001">抓寶</button>
+                        <p>在附近亂抓，冷卻時間為 10 秒。</p>
+                    </div>
+                    <div class="flex">
+                        <button type="button" class="btn001">冒險</button>
+                        <p>進行 10 分鐘的冒險，地區可能會影響你遇到的事物。</p>
+                    </div>         
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
-
 </html>
