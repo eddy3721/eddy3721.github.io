@@ -292,3 +292,33 @@ th {
 .container {
     max-width: 720px!important;
 }
+
+.skill_STR {
+    background-color: rgb(231, 126, 126);
+    padding: 3px 10px 0px 10px;
+    border-radius: 5px;
+}
+
+.skill_INT {
+    background-color: rgb(126, 184, 231);
+    padding: 3px 10px 0px 10px;
+    border-radius: 5px;
+}
+
+.skill_VIT {
+    background-color: rgb(231, 184, 113);
+    padding: 3px 10px 0px 10px;
+    border-radius: 5px;
+}
+
+.skill_AGI {
+    background-color: rgb(176, 231, 113);
+    padding: 3px 10px 0px 10px;
+    border-radius: 5px;
+}
+
+.skill_DEX {
+    background-color: rgb(192, 150, 226);
+    padding: 3px 10px 0px 10px;
+    border-radius: 5px;
+}
