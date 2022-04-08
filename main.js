@@ -10,11 +10,12 @@
 var key = 'noodles';
 
 function checkLogin() {
-    let user = decode(localStorage.getItem("userInfo"), key);
-    user = JSON.parse(user);
+    let user = localStorage.getItem("userInfo");
     if (user == null) {
         location.href = "login.html";
     } else {
+        user = JSON.parse(decode((user), key));
+
         $('#user_name').html($('#user_name').html() + user['user_name']);
         $('#user_LV').html($('#user_LV').html() + user['user_LV']);
         $('#user_EXP').html($('#user_EXP').html() + user['user_EXP']);
@@ -210,6 +211,9 @@ function EXP_update(n) {
 function money_update(n) {
     let user = JSON.parse(decode(localStorage.getItem("userInfo"), key));
     user['user_money'] += n;
+    if (user['user_money'] < 0) {
+        user['user_money'] = 0;
+    }
     localStorage.setItem("userInfo", encode(JSON.stringify(user), key));
     $('#user_money').html('眾神幣 : ' + user['user_money']);
 }
