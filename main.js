@@ -30,6 +30,7 @@ function checkLogin() {
         $('#user_FLEE').html($('#user_FLEE').html() + user['user_FLEE']);
         $('#user_ASPD').html($('#user_ASPD').html() + user['user_ASPD']);
         $('#user_CSPD').html($('#user_CSPD').html() + user['user_CSPD']);
+        $('#user_skillPoint').html($('#user_skillPoint').html() + user['user_skillPoint']);
 
         $('#user_place').html('你現在的位置: ' + localStorage.getItem("user_place"));
     }
@@ -56,7 +57,8 @@ function save_name() {
             "user_HIT": 70,
             "user_FLEE": 20,
             "user_ASPD": 10,
-            "user_CSPD": 10
+            "user_CSPD": 10,
+            "user_skillPoint": 0
         }
         let place = "青青草原";
         localStorage.setItem("userInfo", encode(JSON.stringify(obj), key));
@@ -199,6 +201,7 @@ function EXP_update(n) {
         new_EXP -= need_EXP;
         user['user_EXP'] = new_EXP;
         user['user_LV']++;
+        user['user_skillPoint']++;
     } else {
         user['user_EXP'] = new_EXP;
     }
