@@ -288,3 +288,7 @@ th {
     user-select: none;
     width: 30px;
 }
+
+.container {
+    max-width: 720px!important;
+}

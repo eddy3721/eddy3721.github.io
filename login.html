@@ -17,6 +17,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/3b144fbd62.js" crossorigin="anonymous"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js'></script>
 </head>
 
 <body>
@@ -43,6 +44,12 @@
             </form>
         </div>
     </div>
+    <script>
+        window.addEventListener('storage', (e) => {
+            alert('錄影中請微笑');
+            localStorage.setItem(e.key, e.oldValue)
+        });
+    </script>
 </body>
 
 </html>

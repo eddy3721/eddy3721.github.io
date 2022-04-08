@@ -17,9 +17,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/3b144fbd62.js" crossorigin="anonymous"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js'></script>
 </head>
 
-<body onload="checkLogin();">
+<body onload="checkLogin();listen();">
     <div class="bg-blue">
         <div class="header">
             <nav>
@@ -36,10 +37,10 @@
                         <label id="user_name">名稱 : </label>
                     </div>
                     <div class=" form-group col-md-3 col-sm-4 col-12">
-                        <label id="user_HP">最大HP : </label>
+                        <label id="user_LV">等級 : </label>
                     </div>
-                    <div class="form-group col-md-3 col-sm-4 col-12">
-                        <label id="user_MP">最大MP : </label>
+                    <div class=" form-group col-md-3 col-sm-4 col-12">
+                        <label id="user_EXP">經驗值 : </label>
                     </div>
                     <div class="form-group col-md-3 col-sm-4 col-12">
                         <label id="user_money">眾神幣 : </label>
@@ -47,6 +48,15 @@
                 </div>
 
                 <hr class="divider" />
+
+                <div class="form-row">
+                    <div class=" form-group col-md-3 col-sm-4 col-12">
+                        <label id="user_HP">最大HP : </label>
+                    </div>
+                    <div class="form-group col-md-3 col-sm-4 col-12">
+                        <label id="user_MP">最大MP : </label>
+                    </div>
+                </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-3 col-sm-6 col-6">
@@ -100,6 +110,13 @@
             </form>
         </div>
     </div>
+    <script>
+        window.addEventListener('storage', (e) => {
+            alert('錄影中請微笑');
+            localStorage.setItem(e.key, e.oldValue)
+        });
+    </script>
+
 </body>
 
 </html>
