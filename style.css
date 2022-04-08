@@ -322,3 +322,15 @@ th {
     padding: 3px 10px 0px 10px;
     border-radius: 5px;
 }
+
+.llLWDd {
+    background: #e0e0e0;
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-radius: 4px;
+    color: var(--btn-color);
+    cursor: pointer;
+    margin: 12px 4px 12px 4px;
+    padding: 4px 20px;
+    outline: 0px;
+    transition: all 0.16s ease-out 0s;
+}
