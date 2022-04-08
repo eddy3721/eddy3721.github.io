@@ -32,57 +32,66 @@
         </div>
 
         <div class="container bc-white">
-            <form>
-                <div class="form-row">
-                    <div class=" form-group col-md-3 col-sm-4 col-12">
-                        <label id="user_LV">等級 : </label>
-                    </div>
-                    <div class=" form-group col-md-5 col-sm-8 col-12">
-                        <label id="user_skillPoint">你擁有的能力點 : </label>
-                    </div>
+
+            <div class="form-row">
+                <div class=" form-group col-md-3 col-sm-4 col-12">
+                    <label id="user_LV">等級 : </label>
+                </div>
+                <div class=" form-group col-md-5 col-sm-8 col-12">
+                    <label id="user_skillPoint">你擁有的能力點 : </label>
+                </div>
+            </div>
+
+            <hr class="divider" />
+
+            <div class="explore">
+                <div>
+                    <p class="subtitle">能力值</p>
+                    <p>選擇你的配點</p>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class=" form-group col-md-12 col-sm-12 col-12">
+                    <label class="skill_STR">STR</label>
+                    <button class="llLWDd" onclick="skill_btn_reduce(0);">-</button>
+                    <label id="skill_0">0</label>
+                    <button class="llLWDd" onclick="skill_btn_add(0);">+</button>
+                    <label>影響物理攻擊及攻擊速度</label>
                 </div>
 
-                <hr class="divider" />
+                <div class=" form-group col-md-12 col-sm-12 col-12">
+                    <label class="skill_INT">INT</label>
+                    <button class="llLWDd" onclick="skill_btn_reduce(1);">-</button>
+                    <label id="skill_1">0</label>
+                    <button class="llLWDd" onclick="skill_btn_add(1);">+</button>
+                    <label>影響魔法攻擊及最大MP上限</label>
+                </div>
 
-                <div class="explore">
-                    <div>
-                        <p class="subtitle">能力值</p>
-                        <p>選擇你的配點</p>
-                    </div>
+                <div class=" form-group col-md-12 col-sm-12 col-12">
+                    <label class="skill_VIT">VIT</label>
+                    <button class="llLWDd" onclick="skill_btn_reduce(2);">-</button>
+                    <label id="skill_2">0</label>
+                    <button class="llLWDd" onclick="skill_btn_add(2);">+</button>
+                    <label>影響防禦力及最大HP上限</label>
                 </div>
-                <div class="form-row">
-                    <div class=" form-group col-md-6 col-sm-6 col-12">
-                        <label id="" class="skill_STR">STR 0</label>
-                    </div>
-                    <div class=" form-group col-md-6 col-sm-6 col-12">
-                        <label id=""></label>
-                    </div>
-                    <div class=" form-group col-md-6 col-sm-6 col-12">
-                        <label id="" class="skill_INT">INT 0</label>
-                    </div>
-                    <div class=" form-group col-md-6 col-sm-6 col-12">
-                        <label id=""></label>
-                    </div>
-                    <div class=" form-group col-md-6 col-sm-6 col-12">
-                        <label id="" class="skill_VIT">VIT 0</label>
-                    </div>
-                    <div class=" form-group col-md-6 col-sm-6 col-12">
-                        <label id=""></label>
-                    </div>
-                    <div class=" form-group col-md-6 col-sm-6 col-12">
-                        <label id="" class="skill_AGI">AGI 0</label>
-                    </div>
-                    <div class=" form-group col-md-6 col-sm-6 col-12">
-                        <label id=""></label>
-                    </div>
-                    <div class=" form-group col-md-6 col-sm-6 col-12">
-                        <label id="" class="skill_DEX">DEX 0</label>
-                    </div>
-                    <div class=" form-group col-md-6 col-sm-6 col-12">
-                        <label id=""></label>
-                    </div>
+
+                <div class=" form-group col-md-12 col-sm-12 col-12">
+                    <label class="skill_AGI">AGI</label>
+                    <button class="llLWDd" onclick="skill_btn_reduce(3);">-</button>
+                    <label id="skill_3">0</label>
+                    <button class="llLWDd" onclick="skill_btn_add(3);">+</button>
+                    <label>影響攻擊速度及移動速度</label>
                 </div>
-            </form>
+
+                <div class=" form-group col-md-12 col-sm-12 col-12">
+                    <label class="skill_DEX">DEX</label>
+                    <button class="llLWDd" onclick="skill_btn_reduce(4);">-</button>
+                    <label id="skill_4">0</label>
+                    <button class="llLWDd" onclick="skill_btn_add(4);">+</button>
+                    <label>影響命中率及移動速度</label>
+                </div>
+            </div>
+
         </div>
     </div>
     <script>
