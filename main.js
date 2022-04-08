@@ -220,3 +220,23 @@ function money_update(n) {
     localStorage.setItem("userInfo", encode(JSON.stringify(user), key));
     $('#user_money').html('眾神幣 : ' + user['user_money']);
 }
+
+function skill_btn_reduce(n) {
+    let point = Number($('#user_skillPoint').html().substring(10));
+    let old = Number($('#skill_' + n).html());
+    if (!old) {
+        $('#skill_' + n).html(0);
+    } else {
+        $('#user_skillPoint').html('你擁有的能力點 : ' + (point + 1));
+        $('#skill_' + n).html(old - 1);
+    }
+}
+
+function skill_btn_add(n) {
+    let point = Number($('#user_skillPoint').html().substring(10));
+    let old = Number($('#skill_' + n).html());
+    if (point) {
+        $('#user_skillPoint').html('你擁有的能力點 : ' + (point - 1));
+        $('#skill_' + n).html(old + 1);
+    }
+}
