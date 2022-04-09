@@ -14,6 +14,7 @@ async function fighting(n) {
     let getEXP = 0;
     let getMoney = 0;
     let info = {};
+    let obj;
 
     content += '<div class="flex"><div class="numberReportLine">1</div>';
     content += user['name'] + ' 遇到了 ' + m['name'] + '(lv.' + m['LV'] + ') !</div>';
@@ -21,15 +22,14 @@ async function fighting(n) {
     while (user['HP'] > 0 && m['HP'] > 0) {
         if (attacker == 0) {
             if (info['state'] != null) {
-                console.log('123');
-                if (info['state'] == '暈眩') {
-                    attacker = 1;
-                    content += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
-                    content += user['name'] + ' 暈眩了! 動彈不得!</div>';
-                    info['state'] = null;
-                    i++;
-                    continue;
-                }
+                obj = abnormalState(info['state'], i, user, m);
+                uesr = obj['a'];
+                m = obj['b'];
+                content += obj['msg'];
+                i = obj['i'];
+                attacker = obj['attacker'];
+                info['state'] = obj['state'];
+                continue;
             } else {
                 let dmg = getDamage(user['ATK'], m['DEF'], user['STB']);
                 m['HP'] -= dmg;
@@ -110,6 +110,7 @@ function EXP_update(n) {
     localStorage.setItem("userInfo", encode(JSON.stringify(user), key));
     need_EXP = getNeedEXP();
     $('#user_EXP').html('經驗值 : ' + user['user_EXP'] + ' / ' + need_EXP);
+    $('#user_LV').html('等級 : ' + user['LV']);
     $('#LV').html('等級 : ' + user['LV']);
 }
 
@@ -130,4 +131,25 @@ function getDamage(a, b, s) {
     let dmg = (a * a) / (a + b) * rand;
     dmg = Math.floor(dmg);
     return dmg;
+}
+
+//異常狀態
+function abnormalState(s, i, a, b) { //a:受異常方 b:施加方
+    let obj;
+    let msg = '';
+    switch (s) {
+        case "暈眩":
+            msg += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
+            msg += a['name'] + ' 暈眩了! 動彈不得!</div>';
+            i++;
+            obj = {
+                'attacker': 1,
+                'i': i,
+                'state': null,
+                'msg': msg,
+                'a': a,
+                'b': b
+            }
+            return obj;
+    }
 }
