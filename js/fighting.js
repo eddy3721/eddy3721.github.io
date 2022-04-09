@@ -13,22 +13,35 @@ async function fighting(n) {
     let i = 2;
     let getEXP = 0;
     let getMoney = 0;
+    let info = {};
 
     content += '<div class="flex"><div class="numberReportLine">1</div>';
     content += user['name'] + ' 遇到了 ' + m['name'] + '(lv.' + m['LV'] + ') !</div>';
 
     while (user['HP'] > 0 && m['HP'] > 0) {
         if (attacker == 0) {
-            let dmg = getDamage(user['ATK'], m['DEF'], user['STB']);
-            m['HP'] -= dmg;
-            attacker = 1;
-            content += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
-            content += user['name'] + ' 對 ' + m['name'] + ' 造成了' + dmg + '點傷害</div>';
+            if (info['state'] != null) {
+                console.log('123');
+                if (info['state'] == '暈眩') {
+                    attacker = 1;
+                    content += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
+                    content += user['name'] + ' 暈眩了! 動彈不得!</div>';
+                    info['state'] = null;
+                    i++;
+                    continue;
+                }
+            } else {
+                let dmg = getDamage(user['ATK'], m['DEF'], user['STB']);
+                m['HP'] -= dmg;
+                attacker = 1;
+                content += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
+                content += user['name'] + ' 對 ' + m['name'] + ' 造成了' + dmg + '點傷害</div>';
+            }
         } else {
             let skill_len = m['skills'].length;
             if (Math.floor(Math.random() * 10) > 6 && skill_len) { //怪物施放技能
                 let useSkill = m['skills'][Math.floor(Math.random() * skill_len)];
-                let info = sk(useSkill, m, user);
+                info = sk(useSkill, m, user);
                 user['HP'] -= info['dmg'];
                 attacker = 0;
                 content += '<div class="flex report_blue"><div class="numberReportLine">' + i + '</div>';
