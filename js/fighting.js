@@ -23,13 +23,13 @@ async function fighting(n) {
 
     while (user['user_HP'] > 0 && m[1] > 0) {
         if (attacker == 0) {
-            dmg = user['user_ATK'] - m[4];
+            dmg = getDamage(user['user_ATK'], m[4], user['user_STB']);
             m[1] -= dmg;
             attacker = 1;
             content += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
             content += user['user_name'] + ' 對 ' + m[0] + ' 造成了' + dmg + '點傷害</div>';
         } else {
-            dmg = m[2] - user['user_DEF'];
+            dmg = getDamage(m[2], user['user_DEF'], 70);
             user['user_HP'] -= dmg;
             attacker = 0;
             content += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
@@ -68,10 +68,17 @@ async function fighting(n) {
 }
 
 //經驗更新
+function getNeedEXP() {
+    let user = JSON.parse(decode(localStorage.getItem("userInfo"), key));
+    let n = Math.floor((((Math.pow(user['user_LV'] - 1), 3) + 60) / 5 * ((user['user_LV'] - 1) * 3 + 10)) / 10) * 10;
+    return n;
+}
+
 function EXP_update(n) {
     let user = JSON.parse(decode(localStorage.getItem("userInfo"), key));
     let new_EXP = user['user_EXP'] + n;
-    let need_EXP = user['user_LV'] * 100;
+    let need_EXP = getNeedEXP();
+
     if (new_EXP >= need_EXP) {
         new_EXP -= need_EXP;
         user['user_EXP'] = new_EXP;
@@ -82,7 +89,8 @@ function EXP_update(n) {
     }
 
     localStorage.setItem("userInfo", encode(JSON.stringify(user), key));
-    $('#user_EXP').html('經驗值 : ' + user['user_EXP']);
+    need_EXP = getNeedEXP();
+    $('#user_EXP').html('經驗值 : ' + user['user_EXP'] + ' / ' + need_EXP);
     $('#user_LV').html('等級 : ' + user['user_LV']);
 }
 
@@ -95,4 +103,12 @@ function money_update(n) {
     }
     localStorage.setItem("userInfo", encode(JSON.stringify(user), key));
     $('#user_money').html('眾神幣 : ' + user['user_money']);
+}
+
+//傷害計算
+function getDamage(a, b, s) {
+    let rand = (Math.floor(Math.random() * s) + s) / 100;
+    let dmg = (a * a) / (a + b) * rand;
+    dmg = Math.floor(dmg);
+    return dmg;
 }
