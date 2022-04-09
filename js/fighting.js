@@ -72,7 +72,7 @@ function getNeedEXP() {
 
 function EXP_update(n) {
     let user = JSON.parse(decode(localStorage.getItem("userInfo"), key));
-    let new_EXP = user['user_EXP'] + n;
+    let new_EXP = user['user_EXP'] + Math.floor(n);
     let need_EXP = getNeedEXP();
 
     if (new_EXP >= need_EXP) {
@@ -93,7 +93,7 @@ function EXP_update(n) {
 //金錢更新
 function money_update(n) {
     let user = JSON.parse(decode(localStorage.getItem("userInfo"), key));
-    user['user_money'] += n;
+    user['user_money'] += Math.floor(n);
     if (user['user_money'] < 0) {
         user['user_money'] = 0;
     }
