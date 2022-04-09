@@ -16,20 +16,20 @@ function checkLogin() {
     } else {
         user = JSON.parse(decode((user), key));
 
-        $('#user_name').html($('#user_name').html() + user['user_name']);
-        $('#user_LV').html($('#user_LV').html() + user['user_LV']);
+        $('#user_name').html($('#user_name').html() + user['name']);
+        $('#user_LV').html($('#user_LV').html() + user['LV']);
         $('#user_EXP').html($('#user_EXP').html() + user['user_EXP'] + ' / ' + getNeedEXP());
-        $('#user_HP').html($('#user_HP').html() + user['user_HP']);
-        $('#user_MP').html($('#user_MP').html() + user['user_MP']);
+        $('#user_HP').html($('#user_HP').html() + user['HP']);
+        $('#user_MP').html($('#user_MP').html() + user['MP']);
         $('#user_money').html($('#user_money').html() + user['user_money']);
-        $('#user_ATK').html($('#user_ATK').html() + user['user_ATK']);
-        $('#user_MATK').html($('#user_MATK').html() + user['user_MATK']);
-        $('#user_DEF').html($('#user_DEF').html() + user['user_DEF']);
-        $('#user_MDEF').html($('#user_MDEF').html() + user['user_MDEF']);
-        $('#user_HIT').html($('#user_HIT').html() + user['user_HIT']);
-        $('#user_FLEE').html($('#user_FLEE').html() + user['user_FLEE']);
-        $('#user_ASPD').html($('#user_ASPD').html() + user['user_ASPD']);
-        $('#user_STB').html($('#user_STB').html() + user['user_STB'] + '%');
+        $('#user_ATK').html($('#user_ATK').html() + user['ATK']);
+        $('#user_MATK').html($('#user_MATK').html() + user['MATK']);
+        $('#user_DEF').html($('#user_DEF').html() + user['DEF']);
+        $('#user_MDEF').html($('#user_MDEF').html() + user['MDEF']);
+        $('#user_HIT').html($('#user_HIT').html() + user['HIT']);
+        $('#user_FLEE').html($('#user_FLEE').html() + user['FLEE']);
+        $('#user_ASPD').html($('#user_ASPD').html() + user['ASPD']);
+        $('#user_STB').html($('#user_STB').html() + user['STB'] + '%');
         $('#user_skillPoint').html($('#user_skillPoint').html() + user['user_skillPoint']);
 
         $('#user_place').html('你現在的位置: ' + localStorage.getItem("user_place"));
@@ -44,20 +44,20 @@ function save_name() {
     } else {
         $('#err_msg').html('');
         let obj = {
-            "user_name": name,
-            "user_LV": 1,
+            "name": name,
+            "LV": 1,
             "user_EXP": 0,
-            "user_HP": 100,
-            "user_MP": 100,
+            "HP": 100,
+            "MP": 100,
             "user_money": 100,
-            "user_ATK": 10,
-            "user_MATK": 10,
-            "user_DEF": 10,
-            "user_MDEF": 10,
-            "user_HIT": 70,
-            "user_FLEE": 20,
-            "user_ASPD": 10,
-            "user_STB": 50,
+            "ATK": 10,
+            "MATK": 10,
+            "DEF": 10,
+            "MDEF": 10,
+            "HIT": 70,
+            "FLEE": 20,
+            "ASPD": 10,
+            "STB": 50,
             "user_skillPoint": 0
         }
         let place = "青青草原";
@@ -156,15 +156,15 @@ function skill_confirm() {
     if (total == 0) {
         $('#err_msg').html('請分配點數!');
     } else if (total <= user['user_skillPoint']) {
-        user['user_HP'] += (vit * 2) * 10;
-        user['user_MP'] += (int * 1) * 5;
-        user['user_ATK'] += str * 2;
-        user['user_MATK'] += int * 2;
-        user['user_DEF'] += vit * 1;
-        user['user_MDEF'] += vit * 1;
-        user['user_HIT'] += dex * 2;
-        user['user_FLEE'] += agi * 2 + dex * 1;
-        user['user_ASPD'] += agi * 1;
+        user['HP'] += (vit * 2) * 10;
+        user['MP'] += (int * 1) * 5;
+        user['ATK'] += str * 2;
+        user['MATK'] += int * 2;
+        user['DEF'] += vit * 1;
+        user['MDEF'] += vit * 1;
+        user['HIT'] += dex * 2;
+        user['FLEE'] += agi * 2 + dex * 1;
+        user['ASPD'] += agi * 1;
 
         user['user_skillPoint'] -= total;
 
