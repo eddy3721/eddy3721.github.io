@@ -79,7 +79,7 @@ function EXP_update(n) {
         new_EXP -= need_EXP;
         user['user_EXP'] = new_EXP;
         user['user_LV']++;
-        user['user_skillPoint']++;
+        user['user_skillPoint'] += 2;
     } else {
         user['user_EXP'] = new_EXP;
     }
