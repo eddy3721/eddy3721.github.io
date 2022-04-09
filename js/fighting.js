@@ -68,7 +68,10 @@ async function fighting(n) {
         }
         content += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
         content += '你獲得了 ' + getEXP + ' 點經驗值</div>';
+        content += '<div class="flex"><div class="numberReportLine">' + (i + 1) + '</div>';
+        content += '你獲得了 ' + getEXP + ' 眾神幣</div>';
         EXP_update(getEXP);
+        money_update(getEXP);
     } else {
         content += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
         content += user['name'] + ' 戰敗了! ' + m['name'] + '還有 ' + m['HP'] + ' 點血量</div>';
