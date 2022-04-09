@@ -1,13 +1,13 @@
 //野外戰鬥
 async function fighting(n) {
     $('#fight_1').attr('disabled', true);
+    $('#fight_2').attr('disabled', true);
+    $('#fight_3').attr('disabled', true);
     $('.report').empty();
     let content = '<p class="subtitle" id="report_title">行動報告</p>';
-    let CD = [10, 30, 60];
+    let CD = [10, 10, 10];
     let user = JSON.parse(decode(localStorage.getItem("userInfo"), key));
-    let place = localStorage.getItem("user_place");
-    let rand = Math.floor(Math.random() * M[place].length);
-    let m = JSON.parse(JSON.stringify(M[place][rand]));
+    let m = meetMonster(n);
 
     let attacker = 0;
     let i = 2;
@@ -84,6 +84,8 @@ async function fighting(n) {
     $('.report').append(content);
     await delay(CD[n]);
     $('#fight_1').attr('disabled', false);
+    $('#fight_2').attr('disabled', false);
+    $('#fight_3').attr('disabled', false);
 }
 
 //經驗更新
@@ -151,5 +153,46 @@ function abnormalState(s, i, a, b) { //a:受異常方 b:施加方
                 'b': b
             }
             return obj;
+    }
+}
+
+//遇敵
+function meetMonster(n) {
+    let place = localStorage.getItem("user_place");
+    let rare = Math.floor(Math.random() * 100) + 1;
+    let rand;
+    let m;
+    switch (n) {
+        case 0:
+            if (rare <= 50) {
+                rare = 1;
+            } else if (rare <= 85) {
+                rare = 2;
+            } else if (rare <= 100) {
+                rare = 3;
+            }
+            rand = Math.floor(Math.random() * M[place][rare].length);
+            m = JSON.parse(JSON.stringify(M[place][rare][rand]));
+            return m;
+        case 1:
+            if (rare <= 20) {
+                rare = 2;
+            } else if (rare <= 70) {
+                rare = 3;
+            } else if (rare <= 100) {
+                rare = 4;
+            }
+            rand = Math.floor(Math.random() * M[place][rare].length);
+            m = JSON.parse(JSON.stringify(M[place][rare][rand]));
+            return m;
+        case 2:
+            if (rare <= 50) {
+                rare = 3;
+            } else if (rare <= 100) {
+                rare = 4;
+            }
+            rand = Math.floor(Math.random() * M[place][rare].length);
+            m = JSON.parse(JSON.stringify(M[place][rare][rand]));
+            return m;
     }
 }
