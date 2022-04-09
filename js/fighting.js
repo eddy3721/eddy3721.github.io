@@ -15,31 +15,41 @@ async function fighting(n) {
     let getMoney = 0;
 
     content += '<div class="flex"><div class="numberReportLine">1</div>';
-    content += user['user_name'] + ' 遇到了 ' + m['name'] + '(lv.' + m['LV'] + ') !</div>';
+    content += user['name'] + ' 遇到了 ' + m['name'] + '(lv.' + m['LV'] + ') !</div>';
 
-    while (user['user_HP'] > 0 && m['HP'] > 0) {
+    while (user['HP'] > 0 && m['HP'] > 0) {
         if (attacker == 0) {
-            dmg = getDamage(user['user_ATK'], m['DEF'], user['user_STB']);
+            let dmg = getDamage(user['ATK'], m['DEF'], user['STB']);
             m['HP'] -= dmg;
             attacker = 1;
             content += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
-            content += user['user_name'] + ' 對 ' + m['name'] + ' 造成了' + dmg + '點傷害</div>';
+            content += user['name'] + ' 對 ' + m['name'] + ' 造成了' + dmg + '點傷害</div>';
         } else {
-            dmg = getDamage(m['ATK'], user['user_DEF'], 70);
-            user['user_HP'] -= dmg;
-            attacker = 0;
-            content += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
-            content += m['name'] + ' 對 ' + user['user_name'] + ' 造成了' + dmg + '點傷害</div>';
+            let skill_len = m['skills'].length;
+            if (Math.floor(Math.random() * 10) > 6 && skill_len) { //怪物施放技能
+                let useSkill = m['skills'][Math.floor(Math.random() * skill_len)];
+                let info = sk(useSkill, m, user);
+                user['HP'] -= info['dmg'];
+                attacker = 0;
+                content += '<div class="flex report_blue"><div class="numberReportLine">' + i + '</div>';
+                content += m['name'] + ' 使出了 ' + info['msg'] + '! 對 ' + user['name'] + ' 造成了' + info['dmg'] + '點傷害</div>';
+            } else {
+                let dmg = getDamage(m['ATK'], user['DEF'], m['STB']);
+                user['HP'] -= dmg;
+                attacker = 0;
+                content += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
+                content += m['name'] + ' 對 ' + user['name'] + ' 造成了' + dmg + '點傷害</div>';
+            }
         }
         i++;
     }
 
     if (m['HP'] <= 0) {
         content += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
-        content += m['name'] + ' 倒下了，' + user['user_name'] + ' 還有 ' + user['user_HP'] + ' 點血量</div>';
+        content += m['name'] + ' 倒下了，' + user['name'] + ' 還有 ' + user['HP'] + ' 點血量</div>';
         i++;
         //經驗值計算
-        getEXP = (10 - (Math.abs(m['LV'] - user['user_LV']))) * m['LV'];
+        getEXP = (10 - (Math.abs(m['LV'] - user['LV']))) * m['LV'];
         if (getEXP < 0) {
             getEXP = 0;
         }
@@ -48,11 +58,11 @@ async function fighting(n) {
         EXP_update(getEXP);
     } else {
         content += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
-        content += user['user_name'] + ' 戰敗了! ' + m['name'] + '還有 ' + m['HP'] + ' 點血量</div>';
+        content += user['name'] + ' 戰敗了! ' + m['name'] + '還有 ' + m['HP'] + ' 點血量</div>';
         i++;
 
         //戰敗懲罰
-        getMoney = (Math.abs(m['LV'] - user['user_LV'])) * m['LV'] * -0.2;
+        getMoney = Math.ceil((Math.abs(m['LV'] - user['LV'])) * m['LV'] * -0.2);
         content += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
         content += '你損失了 ' + (getMoney * -1) + ' 眾神幣</div>';
         money_update(getMoney);
@@ -66,7 +76,7 @@ async function fighting(n) {
 //經驗更新
 function getNeedEXP() {
     let user = JSON.parse(decode(localStorage.getItem("userInfo"), key));
-    let n = Math.floor((((Math.pow(user['user_LV'] - 1), 3) + 60) / 5 * ((user['user_LV'] - 1) * 3 + 10)) / 10) * 10;
+    let n = Math.floor((((Math.pow(user['LV'] - 1), 3) + 60) / 5 * ((user['LV'] - 1) * 3 + 10)) / 10) * 10;
     return n;
 }
 
@@ -78,7 +88,7 @@ function EXP_update(n) {
     if (new_EXP >= need_EXP) {
         new_EXP -= need_EXP;
         user['user_EXP'] = new_EXP;
-        user['user_LV']++;
+        user['LV']++;
         user['user_skillPoint'] += 2;
     } else {
         user['user_EXP'] = new_EXP;
@@ -87,13 +97,13 @@ function EXP_update(n) {
     localStorage.setItem("userInfo", encode(JSON.stringify(user), key));
     need_EXP = getNeedEXP();
     $('#user_EXP').html('經驗值 : ' + user['user_EXP'] + ' / ' + need_EXP);
-    $('#user_LV').html('等級 : ' + user['user_LV']);
+    $('#LV').html('等級 : ' + user['LV']);
 }
 
 //金錢更新
 function money_update(n) {
     let user = JSON.parse(decode(localStorage.getItem("userInfo"), key));
-    user['user_money'] += Math.floor(n);
+    user['user_money'] += n;
     if (user['user_money'] < 0) {
         user['user_money'] = 0;
     }
