@@ -18,7 +18,7 @@ function checkLogin() {
 
         $('#user_name').html($('#user_name').html() + user['user_name']);
         $('#user_LV').html($('#user_LV').html() + user['user_LV']);
-        $('#user_EXP').html($('#user_EXP').html() + user['user_EXP']);
+        $('#user_EXP').html($('#user_EXP').html() + user['user_EXP'] + ' / ' + getNeedEXP());
         $('#user_HP').html($('#user_HP').html() + user['user_HP']);
         $('#user_MP').html($('#user_MP').html() + user['user_MP']);
         $('#user_money').html($('#user_money').html() + user['user_money']);
@@ -29,7 +29,7 @@ function checkLogin() {
         $('#user_HIT').html($('#user_HIT').html() + user['user_HIT']);
         $('#user_FLEE').html($('#user_FLEE').html() + user['user_FLEE']);
         $('#user_ASPD').html($('#user_ASPD').html() + user['user_ASPD']);
-        $('#user_CSPD').html($('#user_CSPD').html() + user['user_CSPD']);
+        $('#user_STB').html($('#user_STB').html() + user['user_STB'] + '%');
         $('#user_skillPoint').html($('#user_skillPoint').html() + user['user_skillPoint']);
 
         $('#user_place').html('你現在的位置: ' + localStorage.getItem("user_place"));
@@ -57,7 +57,7 @@ function save_name() {
             "user_HIT": 70,
             "user_FLEE": 20,
             "user_ASPD": 10,
-            "user_CSPD": 10,
+            "user_STB": 50,
             "user_skillPoint": 0
         }
         let place = "青青草原";
@@ -124,34 +124,6 @@ function decode(f, j) {
     }
     return unescape(atob(k))
 };
-
-function EXP_update(n) {
-    let user = JSON.parse(decode(localStorage.getItem("userInfo"), key));
-    let new_EXP = user['user_EXP'] + n;
-    let need_EXP = user['user_LV'] * 100;
-    if (new_EXP >= need_EXP) {
-        new_EXP -= need_EXP;
-        user['user_EXP'] = new_EXP;
-        user['user_LV']++;
-        user['user_skillPoint']++;
-    } else {
-        user['user_EXP'] = new_EXP;
-    }
-
-    localStorage.setItem("userInfo", encode(JSON.stringify(user), key));
-    $('#user_EXP').html('經驗值 : ' + user['user_EXP']);
-    $('#user_LV').html('等級 : ' + user['user_LV']);
-}
-
-function money_update(n) {
-    let user = JSON.parse(decode(localStorage.getItem("userInfo"), key));
-    user['user_money'] += n;
-    if (user['user_money'] < 0) {
-        user['user_money'] = 0;
-    }
-    localStorage.setItem("userInfo", encode(JSON.stringify(user), key));
-    $('#user_money').html('眾神幣 : ' + user['user_money']);
-}
 
 function skill_btn_reduce(n) {
     let point = Number($('#user_skillPoint').html().substring(10));
