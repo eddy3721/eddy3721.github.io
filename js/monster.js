@@ -8,10 +8,7 @@ var M = {
             "DEF": 0,
             "MDEF": 0,
             "STB": 70,
-            "skills": [
-                "sk_1",
-                "sk_2"
-            ]
+            "skills": [1, 2]
         },
         {
             "name": "野豬",
@@ -22,10 +19,7 @@ var M = {
             "DEF": 4,
             "MDEF": 4,
             "STB": 70,
-            "skills": [
-                "sk_2",
-                "sk_3"
-            ]
+            "skills": [2, 3]
         },
         {
             "name": "黃金史萊姆",
@@ -36,10 +30,7 @@ var M = {
             "DEF": 5,
             "MDEF": 5,
             "STB": 70,
-            "skills": [
-                "sk_4",
-                "sk_5"
-            ]
+            "skills": [4, 6]
         },
         {
             "name": "甲福",
@@ -50,9 +41,7 @@ var M = {
             "DEF": 6,
             "MDEF": 6,
             "STB": 70,
-            "skills": [
-
-            ]
+            "skills": [2, 3]
         },
         {
             "name": "史萊姆王",
@@ -63,10 +52,7 @@ var M = {
             "DEF": 9,
             "MDEF": 9,
             "STB": 70,
-            "skills": [
-                "sk_4",
-                "sk_5"
-            ]
+            "skills": [5, 6]
         },
         {
             "name": "青青",
@@ -77,9 +63,7 @@ var M = {
             "DEF": 15,
             "MDEF": 15,
             "STB": 70,
-            "skills": [
-
-            ]
+            "skills": []
         }
     ]
 }
