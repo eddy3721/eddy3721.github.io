@@ -62,6 +62,7 @@ function sk(n, a, b) {
 
             obj = {
                 "dmg": dmg,
+                "state": "暈眩",
                 "msg": '泰山壓頂'
             }
             return obj;
