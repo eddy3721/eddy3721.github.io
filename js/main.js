@@ -127,31 +127,31 @@ function decode(f, j) {
 
 function skill_btn_reduce(n) {
     let point = Number($('#user_skillPoint').html().substring(10));
-    let old = Number($('#skill_' + n).html());
+    let old = Number($('#SP_' + n).html());
     if (!old) {
-        $('#skill_' + n).html(0);
+        $('#SP_' + n).html(0);
     } else {
         $('#user_skillPoint').html('你擁有的能力點 : ' + (point + 1));
-        $('#skill_' + n).html(old - 1);
+        $('#SP_' + n).html(old - 1);
     }
 }
 
 function skill_btn_add(n) {
     let point = Number($('#user_skillPoint').html().substring(10));
-    let old = Number($('#skill_' + n).html());
+    let old = Number($('#SP_' + n).html());
     if (point) {
         $('#user_skillPoint').html('你擁有的能力點 : ' + (point - 1));
-        $('#skill_' + n).html(old + 1);
+        $('#SP_' + n).html(old + 1);
     }
 }
 
 function skill_confirm() {
     let user = JSON.parse(decode(localStorage.getItem("userInfo"), key));
-    let str = Number($('#skill_0').html());
-    let int = Number($('#skill_1').html());
-    let vit = Number($('#skill_2').html());
-    let agi = Number($('#skill_3').html());
-    let dex = Number($('#skill_4').html());
+    let str = Number($('#SP_0').html());
+    let int = Number($('#SP_1').html());
+    let vit = Number($('#SP_2').html());
+    let agi = Number($('#SP_3').html());
+    let dex = Number($('#SP_4').html());
     let total = str + int + vit + agi + dex;
     if (total == 0) {
         $('#err_msg').html('請分配點數!');
@@ -171,7 +171,7 @@ function skill_confirm() {
         localStorage.setItem("userInfo", encode(JSON.stringify(user), key));
 
         for (let i = 0; i < 5; i++) {
-            $('#skill_' + i).html(0);
+            $('#SP_' + i).html(0);
         }
 
         const Toast = Swal.mixin({
