@@ -7,7 +7,7 @@
     <title>我們的麵條神</title>
 
     <link rel="stylesheet" type="text/css" href="style.css">
-    <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="./js/main.js"></script>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -89,6 +89,10 @@
                     <label id="skill_4">0</label>
                     <button class="llLWDd" onclick="skill_btn_add(4);">+</button>
                     <label>影響命中率及移動速度</label>
+                </div>
+                <p id="err_msg" style="color: red;"></p>
+                <div class=" form-group col-md-12 col-sm-12 col-12">
+                    <button class="btn btn-primary" style="width: 100%;" onclick="skill_confirm();">確認</button>
                 </div>
             </div>
 
