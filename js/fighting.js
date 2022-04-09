@@ -62,7 +62,7 @@ async function fighting(n) {
         content += m['name'] + ' 倒下了，' + user['name'] + ' 還有 ' + user['HP'] + ' 點血量</div>';
         i++;
         //經驗值計算
-        getEXP = (10 - (Math.abs(m['LV'] - user['LV']))) * m['LV'];
+        getEXP = (15 - (Math.abs(m['LV'] - user['LV']))) * m['LV'];
         if (getEXP < 0) {
             getEXP = 0;
         }
