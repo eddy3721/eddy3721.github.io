@@ -56,5 +56,14 @@ function sk(n, a, b) {
                 "msg": '黃金衝撞'
             }
             return obj;
+        case 7: //泰山壓頂
+            dmg = Math.ceil(a['ATK'] * 2);
+            dmg = getDamage(dmg, b['DEF'], a['STB']);
+
+            obj = {
+                "dmg": dmg,
+                "msg": '泰山壓頂'
+            }
+            return obj;
     }
 }
