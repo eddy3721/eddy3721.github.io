@@ -8,6 +8,8 @@ var M = {
                 "MATK": 10,
                 "DEF": 0,
                 "MDEF": 0,
+                "FLEE": 5,
+                "HIT": 80,
                 "STB": 70,
                 "skills": [1, 2]
             },
@@ -19,6 +21,8 @@ var M = {
                 "MATK": 0,
                 "DEF": 4,
                 "MDEF": 4,
+                "FLEE": 5,
+                "HIT": 80,
                 "STB": 70,
                 "skills": [2, 3]
             }
@@ -31,6 +35,8 @@ var M = {
                 "MATK": 15,
                 "DEF": 5,
                 "MDEF": 5,
+                "FLEE": 5,
+                "HIT": 80,
                 "STB": 70,
                 "skills": [4, 6]
             },
@@ -42,6 +48,8 @@ var M = {
                 "MATK": 17,
                 "DEF": 6,
                 "MDEF": 6,
+                "FLEE": 5,
+                "HIT": 80,
                 "STB": 70,
                 "skills": [2, 3]
             }
@@ -54,6 +62,8 @@ var M = {
                 "MATK": 20,
                 "DEF": 9,
                 "MDEF": 9,
+                "FLEE": 5,
+                "HIT": 80,
                 "STB": 70,
                 "skills": [5, 6]
             },
@@ -65,6 +75,8 @@ var M = {
                 "MATK": 10,
                 "DEF": 12,
                 "MDEF": 12,
+                "FLEE": 5,
+                "HIT": 80,
                 "STB": 70,
                 "skills": [7]
             }
@@ -77,6 +89,8 @@ var M = {
                 "MATK": 30,
                 "DEF": 15,
                 "MDEF": 15,
+                "FLEE": 5,
+                "HIT": 80,
                 "STB": 70,
                 "skills": [11]
             },
@@ -88,6 +102,8 @@ var M = {
                 "MATK": 40,
                 "DEF": 40,
                 "MDEF": 0,
+                "FLEE": 5,
+                "HIT": 80,
                 "STB": 70,
                 "skills": [8, 9, 10]
             }
