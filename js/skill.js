@@ -119,6 +119,7 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
             msg += a['name'] + ' 使出了 泰山壓頂! 對 ' + b['name'] + ' 造成了' + dmg + '點傷害</div>';
 
             b['HP'] -= dmg;
+            i++;
 
             obj = {
                 'a': a,
@@ -147,14 +148,14 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
             }
             return obj;
         case 9: //詐寢
-            dmg = 0
+            dmg = 0;
 
             msg += '<div class="flex report_blue"><div class="numberReportLine">' + i + '</div>';
-            msg += a['name'] + ' 使出了 詐寢! 攻擊力上升了! 防禦力下降了!</div>';
+            msg += a['name'] + ' 使出了 詐寢! 攻擊力提升了! 防禦力下降了!</div>';
 
-            a['ATK'] *= 1.1;
-            a['DEF'] *= 0.8;
-            a['MDEF'] *= 0.8;
+            a['ATK'] = Math.floor(a['ATK'] * 1.15);
+            a['DEF'] = Math.floor(a['DEF'] * 0.7);
+            a['MDEF'] = Math.floor(a['MDEF'] * 0.7);
 
             obj = {
                 'a': a,
@@ -196,6 +197,42 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
                 'i': i,
                 "dmg": dmg,
                 "state": "燒傷",
+                "msg": msg
+            }
+            return obj;
+        case 12: //法術/飛箭
+            dmg = Math.ceil(a['MATK'] * 1.5);
+            dmg = getDamage(dmg, b['MDEF'], a['STB']);
+
+            msg += '<div class="flex report_blue"><div class="numberReportLine">' + i + '</div>';
+            msg += a['name'] + ' 使出了 法術/飛箭! 對 ' + b['name'] + ' 造成了' + dmg + '點傷害</div>';
+
+            b['HP'] -= dmg;
+
+            obj = {
+                'a': a,
+                'b': b,
+                'i': i,
+                "dmg": dmg,
+                "state": null,
+                "msg": msg
+            }
+            return obj;
+        case 13: //法術/障壁
+            dmg = 0;
+
+            msg += '<div class="flex report_blue"><div class="numberReportLine">' + i + '</div>';
+            msg += a['name'] + ' 使出了 法術/障壁! 防禦力提升了!</div>';
+
+            a['DEF'] = Math.floor(a['DEF'] * 1.15);
+            a['MDEF'] = Math.floor(a['DEF'] * 1.15);
+
+            obj = {
+                'a': a,
+                'b': b,
+                'i': i,
+                "dmg": dmg,
+                "state": null,
                 "msg": msg
             }
             return obj;
