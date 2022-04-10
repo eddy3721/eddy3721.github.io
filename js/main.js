@@ -55,7 +55,7 @@ function save_name() {
             "DEF": 10,
             "MDEF": 10,
             "HIT": 70,
-            "FLEE": 20,
+            "FLEE": 10,
             "ASPD": 10,
             "STB": 50,
             "user_skillPoint": 0,
@@ -163,9 +163,10 @@ function skill_confirm() {
         user['MATK'] += int * 2;
         user['DEF'] += vit * 1;
         user['MDEF'] += vit * 1;
-        user['HIT'] += dex * 2;
-        user['FLEE'] += agi * 2 + dex * 1;
+        user['HIT'] += dex * 1;
+        user['FLEE'] += agi * 2;
         user['ASPD'] += agi * 1;
+        user['STB'] += dex * 1;
 
         user['user_skillPoint'] -= total;
 
