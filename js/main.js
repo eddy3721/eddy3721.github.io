@@ -58,7 +58,8 @@ function save_name() {
             "FLEE": 20,
             "ASPD": 10,
             "STB": 50,
-            "user_skillPoint": 0
+            "user_skillPoint": 0,
+            'skills': [12, 13]
         }
         let place = "青青草原";
         localStorage.setItem("userInfo", encode(JSON.stringify(obj), key));
