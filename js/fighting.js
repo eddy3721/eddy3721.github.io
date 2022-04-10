@@ -21,21 +21,21 @@ async function fighting(n) {
 
     while (user['HP'] > 0 && m['HP'] > 0) {
         if (attacker == 0) {
-            if (info['state'] != null) {
-                obj = abnormalState(info['state'], i, user, m);
-                uesr = obj['a'];
-                m = obj['b'];
-                content += obj['msg'];
-                i = obj['i'];
-                attacker = obj['attacker'];
-                info['state'] = obj['state'];
-            } else {
+            let skill_len = user['skills'].length;
+            if (Math.floor(Math.random() * 10) > 6 && skill_len) { //玩家施放技能
+                let useSkill = user['skills'][Math.floor(Math.random() * skill_len)];
+                info = sk(useSkill, i, user, m);
+                m = info['b'];
+                user = info['a'];
+                i = info['i'];
+                content += info['msg'];
+            } else { //玩家普攻
                 let dmg = getDamage(user['ATK'], m['DEF'], user['STB']);
                 m['HP'] -= dmg;
-                attacker = 1;
                 content += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
                 content += user['name'] + ' 對 ' + m['name'] + ' 造成了' + dmg + '點傷害</div>';
             }
+            attacker = 1;
         } else {
             let skill_len = m['skills'].length;
             if (Math.floor(Math.random() * 10) > 6 && skill_len) { //怪物施放技能
@@ -45,13 +45,27 @@ async function fighting(n) {
                 user = info['b'];
                 i = info['i'];
                 content += info['msg'];
-            } else {
+            } else { //怪物普攻
                 let dmg = getDamage(m['ATK'], user['DEF'], m['STB']);
                 user['HP'] -= dmg;
                 content += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
                 content += m['name'] + ' 對 ' + user['name'] + ' 造成了' + dmg + '點傷害</div>';
             }
             attacker = 0;
+        }
+
+        //異常判定
+        if (attacker == 0) {
+            if (info['state'] != null) {
+                obj = abnormalState(info['state'], i, user, m);
+
+                uesr = obj['a'];
+                m = obj['b'];
+                content += obj['msg'];
+                i = obj['i'];
+                attacker = obj['attacker'];
+                info['state'] = obj['state'];
+            }
         }
         i++;
     }
@@ -62,8 +76,8 @@ async function fighting(n) {
         i++;
         //經驗值計算
         getEXP = (15 - (Math.abs(m['LV'] - user['LV']))) * m['LV'];
-        if (getEXP < 0) {
-            getEXP = 0;
+        if (getEXP <= 0) {
+            getEXP = 1;
         }
         content += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
         content += '你獲得了 ' + getEXP + ' 點經驗值</div>';
@@ -133,6 +147,9 @@ function money_update(n) {
 function getDamage(a, b, s) {
     let rand = (Math.floor(Math.random() * s) + s) / 100;
     let dmg = (a * a) / (a + b) * rand;
+    if (dmg <= 0) {
+        dmg = 1;
+    }
     dmg = Math.floor(dmg);
     return dmg;
 }
@@ -162,12 +179,6 @@ function abnormalState(s, i, a, b) { //a:受異常方 b:施加方
             msg += a['name'] + ' 燒傷了! 受到' + dmg + '點傷害</div>';
 
             a['HP'] -= dmg;
-            i++;
-
-            dmg = getDamage(a['ATK'], b['DEF'], a['STB']);
-            b['HP'] -= dmg;
-            msg += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
-            msg += a['name'] + ' 對 ' + b['name'] + ' 造成了' + dmg + '點傷害</div>';
 
             if (Math.floor(Math.random() * 10) >= 5) {
                 state = null;
@@ -176,7 +187,7 @@ function abnormalState(s, i, a, b) { //a:受異常方 b:施加方
             }
 
             obj = {
-                'attacker': 1,
+                'attacker': 0,
                 'i': i,
                 'state': state,
                 'msg': msg,
