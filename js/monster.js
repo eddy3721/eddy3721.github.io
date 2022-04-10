@@ -78,7 +78,7 @@ var M = {
                 "DEF": 15,
                 "MDEF": 15,
                 "STB": 70,
-                "skills": []
+                "skills": [11]
             },
             {
                 "name": "詐寢神",
@@ -89,7 +89,7 @@ var M = {
                 "DEF": 40,
                 "MDEF": 0,
                 "STB": 70,
-                "skills": [1, 2]
+                "skills": [8, 9, 10]
             }
         ]
     }
