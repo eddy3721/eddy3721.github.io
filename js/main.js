@@ -1,13 +1,4 @@
-﻿function listen() {
-    window.onload = function() {
-        window.addEventListener('storage', (e) => {
-            alert('gg');
-            localStorage.setItem(e.key, e.oldValue)
-        });
-    }
-}
-
-var key = 'noodles';
+﻿var key = 'noodles';
 
 function checkLogin() {
     let user = localStorage.getItem("userInfo");

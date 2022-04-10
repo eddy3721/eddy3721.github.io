@@ -40,6 +40,13 @@
             alert('錄影中請微笑');
             localStorage.setItem(e.key, e.oldValue)
         });
+        document.addEventListener('keydown', function(event) {
+            return 123 != event.keyCode || (event.returnValue = false)
+        });
+
+        import disableDevtool from 'disable-devtool';
+
+        disableDevtool();
     </script>
 </body>
 
