@@ -29,7 +29,6 @@ async function fighting(n) {
                 i = obj['i'];
                 attacker = obj['attacker'];
                 info['state'] = obj['state'];
-                continue;
             } else {
                 let dmg = getDamage(user['ATK'], m['DEF'], user['STB']);
                 m['HP'] -= dmg;
@@ -41,18 +40,18 @@ async function fighting(n) {
             let skill_len = m['skills'].length;
             if (Math.floor(Math.random() * 10) > 6 && skill_len) { //怪物施放技能
                 let useSkill = m['skills'][Math.floor(Math.random() * skill_len)];
-                info = sk(useSkill, m, user);
-                user['HP'] -= info['dmg'];
-                attacker = 0;
-                content += '<div class="flex report_blue"><div class="numberReportLine">' + i + '</div>';
-                content += m['name'] + ' 使出了 ' + info['msg'] + '! 對 ' + user['name'] + ' 造成了' + info['dmg'] + '點傷害</div>';
+                info = sk(useSkill, i, m, user);
+                m = info['a'];
+                user = info['b'];
+                i = info['i'];
+                content += info['msg'];
             } else {
                 let dmg = getDamage(m['ATK'], user['DEF'], m['STB']);
                 user['HP'] -= dmg;
-                attacker = 0;
                 content += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
                 content += m['name'] + ' 對 ' + user['name'] + ' 造成了' + dmg + '點傷害</div>';
             }
+            attacker = 0;
         }
         i++;
     }
@@ -141,16 +140,45 @@ function getDamage(a, b, s) {
 //異常狀態
 function abnormalState(s, i, a, b) { //a:受異常方 b:施加方
     let obj;
+    let dmg;
+    let state;
     let msg = '';
     switch (s) {
         case "暈眩":
             msg += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
             msg += a['name'] + ' 暈眩了! 動彈不得!</div>';
-            i++;
             obj = {
                 'attacker': 1,
                 'i': i,
                 'state': null,
+                'msg': msg,
+                'a': a,
+                'b': b
+            }
+            return obj;
+        case "燒傷":
+            dmg = Math.floor(a['HP'] * 0.05);
+            msg += '<div class="flex report_blue"><div class="numberReportLine">' + i + '</div>';
+            msg += a['name'] + ' 燒傷了! 受到' + dmg + '點傷害</div>';
+
+            a['HP'] -= dmg;
+            i++;
+
+            dmg = getDamage(a['ATK'], b['DEF'], a['STB']);
+            b['HP'] -= dmg;
+            msg += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
+            msg += a['name'] + ' 對 ' + b['name'] + ' 造成了' + dmg + '點傷害</div>';
+
+            if (Math.floor(Math.random() * 10) >= 5) {
+                state = null;
+            } else {
+                state = "燒傷";
+            }
+
+            obj = {
+                'attacker': 1,
+                'i': i,
+                'state': state,
                 'msg': msg,
                 'a': a,
                 'b': b
