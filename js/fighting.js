@@ -30,10 +30,15 @@ async function fighting(n) {
                 i = info['i'];
                 content += info['msg'];
             } else { //玩家普攻
-                let dmg = getDamage(user['ATK'], m['DEF'], user['STB']);
-                m['HP'] -= dmg;
-                content += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
-                content += user['name'] + ' 對 ' + m['name'] + ' 造成了' + dmg + '點傷害</div>';
+                let dmg = getDamage(user['ATK'], m['DEF'], user['STB'], user['HIT'], m['FLEE']);
+                if (dmg == -1) {
+                    content += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
+                    content += user['name'] + ' 對 ' + m['name'] + ' 攻擊，但是被閃開了!</div>';
+                } else {
+                    m['HP'] -= dmg;
+                    content += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
+                    content += user['name'] + ' 對 ' + m['name'] + ' 造成了' + dmg + '點傷害</div>';
+                }
             }
             attacker = 1;
         } else {
@@ -46,10 +51,15 @@ async function fighting(n) {
                 i = info['i'];
                 content += info['msg'];
             } else { //怪物普攻
-                let dmg = getDamage(m['ATK'], user['DEF'], m['STB']);
-                user['HP'] -= dmg;
-                content += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
-                content += m['name'] + ' 對 ' + user['name'] + ' 造成了' + dmg + '點傷害</div>';
+                let dmg = getDamage(m['ATK'], user['DEF'], m['STB'], m['HIT'], user['FLEE']);
+                if (dmg == -1) {
+                    content += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
+                    content += m['name'] + ' 對 ' + user['name'] + ' 攻擊，但是被閃開了!</div>';
+                } else {
+                    user['HP'] -= dmg;
+                    content += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
+                    content += m['name'] + ' 對 ' + user['name'] + ' 造成了' + dmg + '點傷害</div>';
+                }
             }
             attacker = 0;
         }
@@ -144,9 +154,16 @@ function money_update(n) {
 }
 
 //傷害計算
-function getDamage(a, b, s) {
+function getDamage(a, b, s, h, f) {
+    let dmg;
+    let hit = Math.floor(Math.random() * 100) + 1;
+    let dodge = Math.floor(Math.random() * 100) + 1;
+    if (hit > h || dodge < (f / 3)) {
+        dmg = -1;
+        return dmg;
+    }
     let rand = (Math.floor(Math.random() * s) + s) / 100;
-    let dmg = (a * a) / (a + b) * rand;
+    dmg = (a * a) / (a + b) * rand;
     if (dmg <= 0) {
         dmg = 1;
     }
