@@ -34,24 +34,8 @@ function save_name() {
         $('#err_msg').append(msg);
     } else {
         $('#err_msg').html('');
-        let obj = {
-            "name": name,
-            "LV": 1,
-            "user_EXP": 0,
-            "HP": 100,
-            "MP": 100,
-            "user_money": 100,
-            "ATK": 10,
-            "MATK": 10,
-            "DEF": 10,
-            "MDEF": 10,
-            "HIT": 70,
-            "FLEE": 10,
-            "ASPD": 10,
-            "STB": 50,
-            "user_skillPoint": 0,
-            'skills': [12, 13]
-        }
+        let obj = user_initial();
+        obj['name'] = name;
         let place = "青青草原";
         localStorage.setItem("userInfo", encode(JSON.stringify(obj), key));
         localStorage.setItem("user_place", place);
@@ -186,4 +170,74 @@ function skill_confirm() {
     } else {
         $('#err_msg').html('存在異常，請重新整理再試試');
     }
+}
+
+function user_initial() {
+    let obj = {
+        "name": null,
+        "LV": 1,
+        "user_EXP": 0,
+        "HP": 100,
+        "MP": 100,
+        "user_money": 100,
+        "ATK": 10,
+        "MATK": 10,
+        "DEF": 10,
+        "MDEF": 10,
+        "HIT": 70,
+        "FLEE": 10,
+        "ASPD": 10,
+        "STB": 50,
+        "user_skillPoint": 0,
+        'skills': [12, 13]
+    }
+    return obj;
+}
+
+function sp_reset() {
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 1000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    })
+
+    let new_user;
+    let user = localStorage.getItem("userInfo");
+    user = JSON.parse(decode((user), key));
+    let LV = user['LV'];
+    let point = (LV - 1) * 2;
+    if (user['user_money'] < 100) {
+        Toast.fire({
+            icon: 'error',
+            title: '你已是窮光蛋!'
+        });
+    } else if (point != user['user_skillPoint']) {
+        new_user = user_initial();
+        new_user['name'] = user['name'];
+        new_user['LV'] = user['LV'];
+        new_user['user_EXP'] = user['user_EXP'];
+        new_user['user_skillPoint'] = point;
+        new_user['user_money'] = user['user_money'] - 100;
+        new_user['skills'] = user['skills'];
+
+        localStorage.setItem("userInfo", encode(JSON.stringify(new_user), key));
+        $('#user_skillPoint').html('你擁有的能力點 : ' + point);
+
+        Toast.fire({
+            icon: 'success',
+            title: '洗點成功!'
+        });
+    } else {
+        Toast.fire({
+            icon: 'warning',
+            title: '你不需要洗點!'
+        });
+    }
+
 }
