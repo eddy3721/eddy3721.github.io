@@ -236,5 +236,45 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
                 "msg": msg
             }
             return obj;
+        case 14: //羊突猛進
+            dmg = Math.ceil(a['ATK'] * 1.6);
+            dmg = getDamage(dmg, b['DEF'], a['STB']);
+
+            msg += '<div class="flex report_blue"><div class="numberReportLine">' + i + '</div>';
+            msg += a['name'] + ' 使出了 羊突猛進! 對 ' + b['name'] + ' 造成了' + dmg + '點傷害</div>';
+
+            b['HP'] -= dmg;
+
+            obj = {
+                'a': a,
+                'b': b,
+                'i': i,
+                "dmg": dmg,
+                "state": null,
+                "msg": msg
+            }
+            return obj;
+        case 15: //西域刀羊千羊斬
+            dmg = Math.ceil(a['ATK'] * 1.2);
+            dmg = getDamage(dmg, b['DEF'], a['STB']);
+
+            msg += '<div class="flex report_blue"><div class="numberReportLine">' + i + '</div>';
+            msg += '西域刀羊衝了出來使出了 千羊斬!</div>';
+            for (let j = 1; j < 4; j++) {
+                i++;
+                msg += '<div class="flex report_blue"><div class="numberReportLine">' + i + '</div>';
+                msg += '第' + j + '擊對 ' + b['name'] + ' 造成了' + dmg + '點傷害</div>';
+                b['HP'] -= dmg;
+            }
+
+            obj = {
+                'a': a,
+                'b': b,
+                'i': i,
+                "dmg": dmg,
+                "state": null,
+                "msg": msg
+            }
+            return obj;
     }
 }
