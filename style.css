@@ -349,3 +349,8 @@ th {
     color: #28a050;
     font-weight: bold;
 }
+
+.report_red {
+    color: #f00;
+    font-weight: bold;
+}

@@ -276,5 +276,99 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
                 "msg": msg
             }
             return obj;
+        case 16: //召喚寶可夢
+            dmg = 0;
+            rand = Math.floor(Math.random() * 2) + 1;
+            let new_m = M['大木研究所']['1'][rand];
+
+            msg += '<div class="flex report_red"><div class="numberReportLine">' + i + '</div>';
+            msg += a['name'] + ' :「就決定是你了! ' + new_m['name'] + '!」</div>';
+
+            a = new_m;
+
+            obj = {
+                'a': a,
+                'b': b,
+                'i': i,
+                "dmg": dmg,
+                "state": null,
+                "msg": msg
+            }
+            return obj;
+        case 17: //斷崖之劍
+            dmg = Math.ceil(a['ATK'] * 3);
+            dmg = getDamage(dmg, b['DEF'], a['STB']);
+
+            msg += '<div class="flex report_red"><div class="numberReportLine">' + i + '</div>';
+            msg += a['name'] + ' 使出了 斷崖之劍! 對 ' + b['name'] + ' 造成了' + dmg + '點傷害</div>';
+
+            b['HP'] -= dmg;
+
+            obj = {
+                'a': a,
+                'b': b,
+                'i': i,
+                "dmg": dmg,
+                "state": null,
+                "msg": msg
+            }
+            return obj;
+        case 18: //地震 
+            rand = Math.floor(Math.random() * 9) + 1;
+
+            dmg = Math.ceil(a['ATK'] * (1 + rand / 10));
+            dmg = getDamage(dmg, b['DEF'], a['STB']);
+
+
+            msg += '<div class="flex report_blue"><div class="numberReportLine">' + i + '</div>';
+            msg += a['name'] + ' 使出了 地震! 震度' + rand + '級! 對 ' + b['name'] + ' 造成了' + dmg + '點傷害</div>';
+
+            b['HP'] -= dmg;
+
+            obj = {
+                'a': a,
+                'b': b,
+                'i': i,
+                "dmg": dmg,
+                "state": null,
+                "msg": msg
+            }
+            return obj;
+        case 19: //根源波動
+            dmg = Math.ceil(a['MATK'] * 3);
+            dmg = getDamage(dmg, b['MDEF'], a['STB']);
+
+            msg += '<div class="flex report_red"><div class="numberReportLine">' + i + '</div>';
+            msg += a['name'] + ' 使出了 根源波動! 對 ' + b['name'] + ' 造成了' + dmg + '點傷害</div>';
+
+            b['HP'] -= dmg;
+
+            obj = {
+                'a': a,
+                'b': b,
+                'i': i,
+                "dmg": dmg,
+                "state": null,
+                "msg": msg
+            }
+            return obj;
+        case 20: //暴風雪
+            dmg = Math.ceil(a['MATK'] * 1.5);
+            dmg = getDamage(dmg, b['MDEF'], a['STB']);
+
+            msg += '<div class="flex report_blue"><div class="numberReportLine">' + i + '</div>';
+            msg += a['name'] + ' 使出了 暴風雪! 對 ' + b['name'] + ' 造成了' + dmg + '點傷害</div>';
+
+            b['HP'] -= dmg;
+
+            obj = {
+                'a': a,
+                'b': b,
+                'i': i,
+                "dmg": dmg,
+                "state": null,
+                "msg": msg
+            }
+            return obj;
     }
 }
