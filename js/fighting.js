@@ -223,9 +223,9 @@ function meetMonster(n) {
     let m;
     switch (n) {
         case 0:
-            if (rare <= 50) {
+            if (rare <= 60) {
                 rare = 1;
-            } else if (rare <= 85) {
+            } else if (rare <= 95) {
                 rare = 2;
             } else if (rare <= 100) {
                 rare = 3;
