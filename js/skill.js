@@ -279,7 +279,7 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
         case 16: //召喚寶可夢
             dmg = 0;
             rand = Math.floor(Math.random() * 2) + 1;
-            let new_m = M['大木研究所']['1'][rand];
+            let new_m = JSON.parse(JSON.stringify(M['大木研究所']['1'][rand]));
 
             msg += '<div class="flex report_red"><div class="numberReportLine">' + i + '</div>';
             msg += a['name'] + ' :「就決定是你了! ' + new_m['name'] + '!」</div>';
