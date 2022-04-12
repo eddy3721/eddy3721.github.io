@@ -262,7 +262,7 @@ async function special_fighting() {
     $('.report').empty();
     let content = '<p class="subtitle" id="report_title">行動報告</p>';
     let user = JSON.parse(decode(localStorage.getItem("userInfo"), key));
-    let m = M["大木研究所"]["1"][0];
+    let m = JSON.parse(JSON.stringify(M["大木研究所"]["1"][0]));
 
     let attacker = 0;
     let i = 2;
