@@ -9,9 +9,14 @@ var M = {
                 "DEF": 0,
                 "MDEF": 0,
                 "FLEE": 5,
-                "HIT": 80,
+                "HIT": 10,
                 "STB": 70,
-                "skills": [1, 2]
+                "ASPD": 20,
+                "skills": [1, 2],
+                "drop": {
+                    "eq": 1,
+                    "map": 0
+                }
             },
             {
                 "name": "野豬",
@@ -22,9 +27,14 @@ var M = {
                 "DEF": 4,
                 "MDEF": 4,
                 "FLEE": 5,
-                "HIT": 80,
+                "HIT": 10,
                 "STB": 70,
-                "skills": [2, 3]
+                "ASPD": 20,
+                "skills": [2, 3],
+                "drop": {
+                    "eq": 2,
+                    "map": 0
+                }
             },
             {
                 "name": "毛球",
@@ -35,9 +45,14 @@ var M = {
                 "DEF": 0,
                 "MDEF": 0,
                 "FLEE": 5,
-                "HIT": 80,
+                "HIT": 10,
                 "STB": 70,
-                "skills": [2]
+                "ASPD": 20,
+                "skills": [2],
+                "drop": {
+                    "eq": 0,
+                    "map": 0
+                }
             },
         ],
         '2': [{
@@ -49,9 +64,14 @@ var M = {
                 "DEF": 5,
                 "MDEF": 5,
                 "FLEE": 5,
-                "HIT": 80,
+                "HIT": 10,
                 "STB": 70,
-                "skills": [4, 6]
+                "ASPD": 20,
+                "skills": [4, 6],
+                "drop": {
+                    "eq": 0,
+                    "map": 0
+                }
             },
             {
                 "name": "甲福",
@@ -62,9 +82,14 @@ var M = {
                 "DEF": 6,
                 "MDEF": 6,
                 "FLEE": 5,
-                "HIT": 80,
+                "HIT": 10,
                 "STB": 70,
-                "skills": [2, 3]
+                "ASPD": 20,
+                "skills": [2, 3],
+                "drop": {
+                    "eq": 0,
+                    "map": 0
+                }
             }
         ],
         '3': [{
@@ -76,9 +101,14 @@ var M = {
                 "DEF": 9,
                 "MDEF": 9,
                 "FLEE": 5,
-                "HIT": 80,
+                "HIT": 10,
                 "STB": 70,
-                "skills": [5, 6]
+                "ASPD": 20,
+                "skills": [5, 6],
+                "drop": {
+                    "eq": 0,
+                    "map": 0
+                }
             },
             {
                 "name": "甲吉",
@@ -89,9 +119,14 @@ var M = {
                 "DEF": 12,
                 "MDEF": 12,
                 "FLEE": 5,
-                "HIT": 80,
+                "HIT": 10,
                 "STB": 70,
-                "skills": [7]
+                "ASPD": 20,
+                "skills": [7],
+                "drop": {
+                    "eq": 0,
+                    "map": 0
+                }
             }
         ],
         '4': [{
@@ -103,9 +138,14 @@ var M = {
                 "DEF": 15,
                 "MDEF": 15,
                 "FLEE": 5,
-                "HIT": 80,
+                "HIT": 10,
                 "STB": 70,
-                "skills": [11]
+                "ASPD": 20,
+                "skills": [11],
+                "drop": {
+                    "eq": 0,
+                    "map": 0
+                }
             },
             {
                 "name": "喜羊羊",
@@ -116,9 +156,14 @@ var M = {
                 "DEF": 25,
                 "MDEF": 25,
                 "FLEE": 5,
-                "HIT": 80,
+                "HIT": 10,
                 "STB": 70,
-                "skills": [14, 15]
+                "ASPD": 20,
+                "skills": [14, 15],
+                "drop": {
+                    "eq": 0,
+                    "map": 0
+                }
             },
             {
                 "name": "詐寢神",
@@ -129,9 +174,14 @@ var M = {
                 "DEF": 40,
                 "MDEF": 0,
                 "FLEE": 5,
-                "HIT": 80,
+                "HIT": 10,
                 "STB": 70,
-                "skills": [8, 9, 10]
+                "ASPD": 20,
+                "skills": [8, 9, 10],
+                "drop": {
+                    "eq": 0,
+                    "map": 0
+                }
             }
         ]
     },
@@ -145,9 +195,14 @@ var M = {
                 "DEF": 0,
                 "MDEF": 0,
                 "FLEE": 5,
-                "HIT": 80,
+                "HIT": 10,
                 "STB": 70,
-                "skills": [16]
+                "ASPD": 20,
+                "skills": [16],
+                "drop": {
+                    "eq": 0,
+                    "map": 0
+                }
             },
             {
                 "name": "原始回歸‧固拉多",
@@ -158,9 +213,14 @@ var M = {
                 "DEF": 40,
                 "MDEF": 30,
                 "FLEE": 5,
-                "HIT": 80,
+                "HIT": 10,
                 "STB": 70,
-                "skills": [17, 18]
+                "ASPD": 20,
+                "skills": [17, 18],
+                "drop": {
+                    "eq": 0,
+                    "map": 0
+                }
             },
             {
                 "name": "原始回歸‧蓋歐卡",
@@ -171,9 +231,14 @@ var M = {
                 "DEF": 30,
                 "MDEF": 40,
                 "FLEE": 5,
-                "HIT": 80,
+                "HIT": 10,
                 "STB": 70,
-                "skills": [19, 20]
+                "ASPD": 20,
+                "skills": [19, 20],
+                "drop": {
+                    "eq": 0,
+                    "map": 0
+                }
             },
             {
                 "name": "烈空座",
@@ -184,9 +249,14 @@ var M = {
                 "DEF": 40,
                 "MDEF": 30,
                 "FLEE": 5,
-                "HIT": 80,
+                "HIT": 10,
                 "STB": 70,
-                "skills": [17, 18]
+                "ASPD": 20,
+                "skills": [17, 18],
+                "drop": {
+                    "eq": 0,
+                    "map": 0
+                }
             }
         ]
     }

@@ -10,7 +10,7 @@ async function fighting(n) {
     let m = meetMonster(n);
 
     let attacker = 0;
-    let i = 2;
+    let i = 1;
     let getEXP = 0;
     let getMoney = 0;
     let info = {};
@@ -21,44 +21,51 @@ async function fighting(n) {
 
     while (user['HP'] > 0 && m['HP'] > 0) {
         if (attacker == 0) {
-            let skill_len = user['skills'].length;
-            if (Math.floor(Math.random() * 10) > 6 && skill_len) { //玩家施放技能
-                let useSkill = user['skills'][Math.floor(Math.random() * skill_len)];
-                info = sk(useSkill, i, user, m);
-                m = info['b'];
-                user = info['a'];
-                i = info['i'];
-                content += info['msg'];
-            } else { //玩家普攻
-                let dmg = getDamage(user['ATK'], m['DEF'], user['STB'], user['HIT'], m['FLEE']);
-                if (dmg == -1) {
-                    content += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
-                    content += user['name'] + ' 對 ' + m['name'] + ' 攻擊，但是被閃開了!</div>';
-                } else {
-                    m['HP'] -= dmg;
-                    content += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
-                    content += user['name'] + ' 對 ' + m['name'] + ' 造成了' + dmg + '點傷害</div>';
+            let batter = getBatter(user['ASPD']); //連擊數
+
+            for (let j = 1; j <= batter; j++) {
+                i++;
+                let skill_len = user['skills'].length;
+                if (Math.floor(Math.random() * 10) > 6 && skill_len) { //玩家施放技能
+                    let useSkill = user['skills'][0];
+                    if (sk_info(useSkill)['cost'] <= user['MP']) {
+                        info = sk(useSkill, i, user, m);
+                        m = info['b'];
+                        user = info['a'];
+                        i = info['i'];
+                        content += info['msg'];
+                        user['MP'] -= sk_info(useSkill)['cost'];
+                    } else { //玩家沒藍普攻
+                        info = normalAttack(user, m, i, j);
+                        user = info['a'];
+                        m = info['b'];
+                        content += info['msg'];
+                    }
+                } else { //玩家普攻
+                    info = normalAttack(user, m, i, j);
+                    user = info['a'];
+                    m = info['b'];
+                    content += info['msg'];
                 }
             }
             attacker = 1;
         } else {
-            let skill_len = m['skills'].length;
-            if (Math.floor(Math.random() * 10) > 6 && skill_len) { //怪物施放技能
-                let useSkill = m['skills'][Math.floor(Math.random() * skill_len)];
-                info = sk(useSkill, i, m, user);
-                m = info['a'];
-                user = info['b'];
-                i = info['i'];
-                content += info['msg'];
-            } else { //怪物普攻
-                let dmg = getDamage(m['ATK'], user['DEF'], m['STB'], m['HIT'], user['FLEE']);
-                if (dmg == -1) {
-                    content += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
-                    content += m['name'] + ' 對 ' + user['name'] + ' 攻擊，但是被閃開了!</div>';
-                } else {
-                    user['HP'] -= dmg;
-                    content += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
-                    content += m['name'] + ' 對 ' + user['name'] + ' 造成了' + dmg + '點傷害</div>';
+            let batter = getBatter(m['ASPD']); //連擊數
+            for (let j = 1; j <= batter; j++) {
+                i++;
+                let skill_len = m['skills'].length;
+                if (Math.floor(Math.random() * 10) > 6 && skill_len) { //怪物施放技能
+                    let useSkill = m['skills'][Math.floor(Math.random() * skill_len)];
+                    info = sk(useSkill, i, m, user);
+                    m = info['a'];
+                    user = info['b'];
+                    i = info['i'];
+                    content += info['msg'];
+                } else { //怪物普攻
+                    info = normalAttack(m, user, i, j);
+                    user = info['b'];
+                    m = info['a'];
+                    content += info['msg'];
                 }
             }
             attacker = 0;
@@ -66,6 +73,7 @@ async function fighting(n) {
 
         //異常判定
         if (attacker == 0) {
+            i++;
             if (info['state'] != null) {
                 obj = abnormalState(info['state'], i, user, m);
 
@@ -77,13 +85,18 @@ async function fighting(n) {
                 info['state'] = obj['state'];
             }
         }
-        i++;
     }
 
     if (m['HP'] <= 0) {
+        i++;
         content += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
         content += m['name'] + ' 倒下了，' + user['name'] + ' 還有 ' + user['HP'] + ' 點血量</div>';
         i++;
+        //掉落物
+        let drop = drop_item(m, i);
+        i = drop['i'];
+        content += drop['msg'];
+
         //經驗值計算
         getEXP = (15 - (Math.abs(m['LV'] - user['LV']))) * m['LV'];
         if (getEXP <= 0) {
@@ -153,22 +166,35 @@ function money_update(n) {
     $('#user_money').html('眾神幣 : ' + user['user_money']);
 }
 
-//傷害計算
+//傷害計算//a攻擊方ATK b受擊方DEF s:STB h:會心 f:閃躲
 function getDamage(a, b, s, h, f) {
-    let dmg;
-    let hit = Math.floor(Math.random() * 100) + 1;
+    let obj = {
+        'critical': false,
+        'dmg': 0
+    };
+
     let dodge = Math.floor(Math.random() * 100) + 1;
-    if (hit > h || dodge < (f / 3)) {
-        dmg = -1;
-        return dmg;
+    if (dodge < (f / 3)) { //閃躲
+        obj['dmg'] = -1;
+        return obj;
     }
+
+    let hit = Math.floor(Math.random() * 100) + 1;
+    if (hit <= h) { //爆擊
+        hit = 2;
+        obj['critical'] = true;
+    } else {
+        hit = 1;
+        obj['critical'] = false;
+    }
+
     let rand = (Math.floor(Math.random() * s) + s) / 100;
-    dmg = (a * a) / (a + b) * rand;
-    if (dmg <= 0) {
-        dmg = 1;
+    obj['dmg'] = ((a * a) / (a + b) * rand) * hit;
+    if (obj['dmg'] <= 0) {
+        obj['dmg'] = 1;
     }
-    dmg = Math.floor(dmg);
-    return dmg;
+    obj['dmg'] = Math.floor(obj['dmg']);
+    return obj;
 }
 
 //異常狀態
@@ -192,6 +218,9 @@ function abnormalState(s, i, a, b) { //a:受異常方 b:施加方
             return obj;
         case "燒傷":
             dmg = Math.floor(a['HP'] * 0.05);
+            if (dmg < 1) {
+                dmg = 1;
+            }
             msg += '<div class="flex report_blue"><div class="numberReportLine">' + i + '</div>';
             msg += a['name'] + ' 燒傷了! 受到' + dmg + '點傷害</div>';
 
@@ -276,44 +305,43 @@ async function special_fighting() {
 
     while (user['HP'] > 0 && m['HP'] > 0) {
         if (attacker == 0) {
-            let skill_len = user['skills'].length;
-            if (Math.floor(Math.random() * 10) > 6 && skill_len) { //玩家施放技能
-                let useSkill = user['skills'][Math.floor(Math.random() * skill_len)];
-                info = sk(useSkill, i, user, m);
-                m = info['b'];
-                user = info['a'];
-                i = info['i'];
-                content += info['msg'];
-            } else { //玩家普攻
-                let dmg = getDamage(user['ATK'], m['DEF'], user['STB'], user['HIT'], m['FLEE']);
-                if (dmg == -1) {
-                    content += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
-                    content += user['name'] + ' 對 ' + m['name'] + ' 攻擊，但是被閃開了!</div>';
-                } else {
-                    m['HP'] -= dmg;
-                    content += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
-                    content += user['name'] + ' 對 ' + m['name'] + ' 造成了' + dmg + '點傷害</div>';
+            let batter = getBatter(user['ASPD']); //連擊數
+
+            for (let j = 1; j <= batter; j++) {
+                i++;
+                let skill_len = user['skills'].length;
+                if (Math.floor(Math.random() * 10) > 6 && skill_len) { //玩家施放技能
+                    let useSkill = user['skills'][0];
+                    info = sk(useSkill, i, user, m);
+                    m = info['b'];
+                    user = info['a'];
+                    i = info['i'];
+                    content += info['msg'];
+                } else { //玩家普攻
+                    info = normalAttack(user, m, i, j);
+                    user = info['a'];
+                    m = info['b'];
+                    content += info['msg'];
                 }
             }
             attacker = 1;
         } else {
-            let skill_len = m['skills'].length;
-            if (Math.floor(Math.random() * 10) > 6 && skill_len) { //怪物施放技能
-                let useSkill = m['skills'][Math.floor(Math.random() * skill_len)];
-                info = sk(useSkill, i, m, user);
-                m = info['a'];
-                user = info['b'];
-                i = info['i'];
-                content += info['msg'];
-            } else { //怪物普攻
-                let dmg = getDamage(m['ATK'], user['DEF'], m['STB'], m['HIT'], user['FLEE']);
-                if (dmg == -1) {
-                    content += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
-                    content += m['name'] + ' 對 ' + user['name'] + ' 攻擊，但是被閃開了!</div>';
-                } else {
-                    user['HP'] -= dmg;
-                    content += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
-                    content += m['name'] + ' 對 ' + user['name'] + ' 造成了' + dmg + '點傷害</div>';
+            let batter = getBatter(m['ASPD']); //連擊數
+            for (let j = 1; j <= batter; j++) {
+                i++;
+                let skill_len = m['skills'].length;
+                if (Math.floor(Math.random() * 10) > 6 && skill_len) { //怪物施放技能
+                    let useSkill = m['skills'][Math.floor(Math.random() * skill_len)];
+                    info = sk(useSkill, i, m, user);
+                    m = info['a'];
+                    user = info['b'];
+                    i = info['i'];
+                    content += info['msg'];
+                } else { //怪物普攻
+                    info = normalAttack(m, user, i, j);
+                    user = info['b'];
+                    m = info['a'];
+                    content += info['msg'];
                 }
             }
             attacker = 0;
@@ -321,6 +349,7 @@ async function special_fighting() {
 
         //異常判定
         if (attacker == 0) {
+            i++;
             if (info['state'] != null) {
                 obj = abnormalState(info['state'], i, user, m);
 
@@ -332,7 +361,6 @@ async function special_fighting() {
                 info['state'] = obj['state'];
             }
         }
-        i++;
     }
 
     if (m['HP'] <= 0) {
@@ -365,4 +393,70 @@ async function special_fighting() {
     $('.report').append(content);
     await delay(2);
     $('#fight_4').attr('disabled', false);
+}
+
+function getBatter(n) {
+    let max_batter = Math.trunc(n / 10); //最高連擊數
+    if (max_batter > 5) {
+        max_batter = 5;
+    }
+    let batter = Math.floor(Math.random() * max_batter) + 1; //連擊判定
+    return batter;
+}
+
+function normalAttack(a, b, i, j) { //普攻判定 //a:攻擊方 b:受擊方 j:連擊數
+    let msg = '';
+    let obj = {};
+    let info = getDamage(a['ATK'], b['DEF'], a['STB'], a['HIT'], b['FLEE']);
+    let dmg = info['dmg'];
+    if (j == 1) {
+        msg += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
+        msg += a['name'] + '攻擊，';
+    } else {
+        msg += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
+        msg += a['name'] + j.toString() + '連擊，';
+    }
+    if (dmg == -1) {
+        msg += '但是被閃開了!</div>';
+    } else {
+        b['HP'] -= dmg;
+        if (info['critical']) {
+            msg += '會心一擊! ';
+        }
+        msg += '對 ' + b['name'] + ' 造成了' + dmg + '點傷害</div>';
+    }
+    obj = {
+        'a': a,
+        'b': b,
+        'msg': msg
+    }
+    return obj;
+}
+
+function drop_item(m, i) { //掉落物判定 
+    let obj = {
+        "eq": 0,
+        "map": 0,
+        "msg": '',
+        "i": i
+    }
+
+    let eq_rate = Math.floor(Math.random() * 100) + 1;
+    let map_rate = Math.floor(Math.random() * 100) + 1;
+
+    if (eq_rate <= 100 && m['drop']['eq']) {
+        obj['eq'] = m['drop']['eq'];
+
+        obj['msg'] += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
+        obj['msg'] += '你獲得了 ' + item_eq(obj['eq'])['name'] + '</div>';
+        obj['i']++;
+    }
+    /*if (map_rate <= 5 && !m['drop']['map']) {
+        obj['map'] = m['drop']['map'];
+
+        obj['msg'] += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
+        obj['msg'] += '你獲得了 ' + item_map(obj['map'])['name'] + '</div>';
+        obj['i']++;
+    }*/
+    return obj;
 }
