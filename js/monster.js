@@ -1,5 +1,7 @@
 var M = {
+    "test": {},
     "青青草原": {
+        'intro': '聚集著無害動物的青青草地',
         '1': [{
                 "name": "史萊姆",
                 "LV": 1,
@@ -15,8 +17,8 @@ var M = {
                 "skills": [1, 2],
                 "drop": {
                     "eq": 1,
-                    "map": 0,
-                    "skill": 0,
+                    "map": 2,
+                    "skill": 1,
                 }
             },
             {
@@ -35,7 +37,7 @@ var M = {
                 "drop": {
                     "eq": 2,
                     "map": 0,
-                    "skill": 0
+                    "skill": 2
                 }
             },
             {
@@ -196,6 +198,7 @@ var M = {
         ]
     },
     "大木研究所": {
+        'intro': '大木小窩',
         '1': [{
                 "name": "大木博士",
                 "LV": 10,
@@ -274,4 +277,13 @@ var M = {
             }
         ]
     }
+}
+
+//地圖資訊
+function map_info(n) {
+    let obj = {};
+    let map_name = Object.keys(M);
+    obj['name'] = map_name[n];
+
+    return obj;
 }

@@ -156,3 +156,78 @@ function skill_introduce(n) {
         });
     }
 }
+
+function showMap() {
+    let bag = JSON.parse(decode(localStorage.getItem("item"), key));
+    let place = localStorage.getItem("user_place");
+    let content = '';
+
+    content += '<div><table role="table" class="bag_table"><thead class="bag_column"><tr role="row"><th width="25%">';
+    content += '地圖';
+    content += '</th><th>消耗時間</th><th>簡介</th></tr></thead><tbody class="hover_gray">';
+    let all_map = bag['map'];
+    for (let i = 0; i < all_map.length; i++) {
+        let map_num = all_map[i];
+        let map_name = map_info(map_num)['name'];
+        content += '<tr role="row" class="curser_pointer"></tr><tr onclick = "change_Place(';
+        content += map_num;
+        content += ');" id="map_';
+        content += map_num;
+        content += '" class="';
+        if (place == map_name) {
+            content += 'bc-yellow';
+        }
+        content += '"><th>';
+        content += map_name;
+        content += '</th><th>' + 0;
+        content += '</th><th>' + M[map_name]['intro'];
+        content += '</th></tr>';
+    }
+    content += '</tbody></div>';
+
+    $('#show_table').append(content);
+}
+
+function change_Place(n) {
+    let map_name = map_info(n)['name'];
+    let bag = JSON.parse(decode(localStorage.getItem("item"), key));
+    let place = localStorage.getItem("user_place");
+    if (bag['map'].indexOf(n) == -1) {
+        alert('你並未持有本地圖');
+    } else {
+        if (place == map_name) {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 1000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            });
+
+            Toast.fire({
+                icon: 'warning',
+                title: '你已經在這裡了!'
+            });
+        } else {
+            Swal.fire({
+                title: map_name,
+                html: '<p>' + M[map_name]['intro'] + '</p>',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonText: '取消',
+                confirmButtonText: '前往'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $('tr').removeClass("bc-yellow");
+
+                    localStorage.setItem("user_place", map_name);
+                    $('#map_' + n).addClass("bc-yellow");
+                }
+            });
+        }
+    }
+}

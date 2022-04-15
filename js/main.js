@@ -209,7 +209,7 @@ function item_initial() {
         "body": [],
         "foot": [],
         "weapon": [],
-        "map": [],
+        "map": [1],
         "skill": [12, 13]
     }
     return obj;

@@ -432,19 +432,21 @@ function drop_item(m, i) { //掉落物判定
     let obj = {
         "eq": 0,
         "map": 0,
+        "skill": 0,
         "msg": '',
         "i": i
     }
     let bag = JSON.parse(decode(localStorage.getItem("item"), key));
 
     let eq_rate = Math.floor(Math.random() * 100) + 1;
+    let skill_rate = Math.floor(Math.random() * 100) + 1;
     let map_rate = Math.floor(Math.random() * 100) + 1;
 
-    if (eq_rate <= 100 && m['drop']['eq']) {
+    if (eq_rate <= 100 && m['drop']['eq']) { //裝備掉落
         obj['eq'] = m['drop']['eq'];
 
-        obj['msg'] += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
-        obj['msg'] += '你獲得了 ' + item_eq(obj['eq'])['name'] + '</div>';
+        obj['msg'] += '<div class="flex"><div class="numberReportLine">' + obj['i'] + '</div>';
+        obj['msg'] += '你獲得了 裝備 : ' + item_eq(obj['eq'])['name'] + '</div>';
         obj['i']++;
 
         let eq_type = item_eq(obj['eq'])['type'];
@@ -454,13 +456,51 @@ function drop_item(m, i) { //掉落物判定
 
         localStorage.setItem("item", encode(JSON.stringify(bag), key));
     }
-    /*if (map_rate <= 5 && !m['drop']['map']) {
-        obj['map'] = m['drop']['map'];
+    if (skill_rate <= 100 && m['drop']['skill']) { //技能掉落
+        obj['skill'] = m['drop']['skill'];
 
-        obj['msg'] += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
-        obj['msg'] += '你獲得了 ' + item_map(obj['map'])['name'] + '</div>';
+        obj['msg'] += '<div class="flex"><div class="numberReportLine">' + obj['i'] + '</div>';
+        obj['msg'] += '你獲得了 技能 : ' + sk_info(obj['skill'])['name'] + '</div>';
         obj['i']++;
-    }*/
+
+        if (bag['skill'].indexOf(obj['skill']) == -1) {
+            bag['skill'].push(obj['skill']);
+        }
+
+        localStorage.setItem("item", encode(JSON.stringify(bag), key));
+    }
+    if (map_rate <= 100 && m['drop']['map']) { //地圖掉落
+        obj['map'] = m['drop']['map'];
+        let map_name = map_info(obj['map'])['name']
+
+        obj['msg'] += '<div class="flex"><div class="numberReportLine">' + obj['i'] + '</div>';
+        obj['msg'] += '你獲得了 地圖碎片 : ' + map_name + '</div>';
+        obj['i']++;
+
+        if (bag['map'].indexOf(obj['map']) == -1) {
+            bag['map'].push(obj['map']);
+            bag['map'] = bag['map'].sort();
+
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 2500,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            });
+
+            Toast.fire({
+                icon: 'warning',
+                title: '解鎖新地圖 「' + map_name + '」!'
+            });
+        }
+
+        localStorage.setItem("item", encode(JSON.stringify(bag), key));
+    }
     return obj;
 }
 
