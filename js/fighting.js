@@ -7,6 +7,8 @@ async function fighting(n) {
     let content = '<p class="subtitle" id="report_title">行動報告</p>';
     let CD = [10, 10, 10];
     let user = JSON.parse(decode(localStorage.getItem("userInfo"), key));
+    let eq = eq_addition();
+    user = fight_eq_addition(user, eq);
     let m = meetMonster(n);
 
     let attacker = 0;
@@ -27,7 +29,7 @@ async function fighting(n) {
                 i++;
                 let skill_len = user['skills'].length;
                 if (Math.floor(Math.random() * 10) > 6 && skill_len) { //玩家施放技能
-                    let useSkill = user['skills'][0];
+                    let useSkill = user['skills'][Math.floor(Math.random() * skill_len)];
                     if (sk_info(useSkill)['cost'] <= user['MP']) {
                         info = sk(useSkill, i, user, m);
                         m = info['b'];
@@ -125,13 +127,6 @@ async function fighting(n) {
     $('#fight_1').attr('disabled', false);
     $('#fight_2').attr('disabled', false);
     $('#fight_3').attr('disabled', false);
-}
-
-//經驗更新
-function getNeedEXP() {
-    let user = JSON.parse(decode(localStorage.getItem("userInfo"), key));
-    let n = Math.floor((((Math.pow(user['LV'] - 1), 3) + 60) / 5 * ((user['LV'] - 1) * 3 + 10)) / 10) * 10;
-    return n;
 }
 
 function EXP_update(n) {
@@ -440,6 +435,7 @@ function drop_item(m, i) { //掉落物判定
         "msg": '',
         "i": i
     }
+    let bag = JSON.parse(decode(localStorage.getItem("item"), key));
 
     let eq_rate = Math.floor(Math.random() * 100) + 1;
     let map_rate = Math.floor(Math.random() * 100) + 1;
@@ -450,6 +446,13 @@ function drop_item(m, i) { //掉落物判定
         obj['msg'] += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
         obj['msg'] += '你獲得了 ' + item_eq(obj['eq'])['name'] + '</div>';
         obj['i']++;
+
+        let eq_type = item_eq(obj['eq'])['type'];
+        if (bag[eq_type].indexOf(obj['eq']) == -1) {
+            bag[eq_type].push(obj['eq']);
+        }
+
+        localStorage.setItem("item", encode(JSON.stringify(bag), key));
     }
     /*if (map_rate <= 5 && !m['drop']['map']) {
         obj['map'] = m['drop']['map'];
@@ -459,4 +462,21 @@ function drop_item(m, i) { //掉落物判定
         obj['i']++;
     }*/
     return obj;
+}
+
+//戰鬥裝備加成
+function fight_eq_addition(a, eq) {
+    a['HP'] += eq['HP'];
+    a['MP'] += eq['MP'];
+    a['ATK'] += eq['ATK'];
+    a['MATK'] += eq['MATK'];
+    a['DEF'] += eq['DEF'];
+    a['MDEF'] += eq['MDEF'];
+    a['HIT'] += eq['HIT'];
+    a['FLEE'] += eq['FLEE'];
+    a['ASPD'] += eq['ASPD'];
+    a['STB'] += eq['STB'];
+    a['skills'] = a['skills'].concat(eq['skills']);
+
+    return a;
 }

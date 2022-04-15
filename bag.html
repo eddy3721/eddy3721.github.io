@@ -8,6 +8,8 @@
 
     <link rel="stylesheet" type="text/css" href="style.css">
     <script type="text/javascript" src="./js/main.js"></script>
+    <script type="text/javascript" src="./js/bag.js"></script>
+    <script type="text/javascript" src="./js/item.js"></script>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -18,10 +20,10 @@
     <script src="https://kit.fontawesome.com/3b144fbd62.js" crossorigin="anonymous"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js'></script>
-    <script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool@latest/disable-devtool.min.js'></script>
+    <!--<script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool@latest/disable-devtool.min.js'></script>-->
 </head>
 
-<body>
+<body onload="checkLogin();showItem();">
     <div class="bg-blue">
         <div class="header">
             <nav>
@@ -34,9 +36,12 @@
         </div>
 
         <div class="container bc-white">
-            <button class="btn btn-danger" onclick="clear_all();">人生重來槍</button>
+            <div class="form-row" id="show_table">
+
+            </div>
         </div>
     </div>
+
     <script>
         window.addEventListener('storage', (e) => {
             alert('錄影中請微笑');
@@ -50,6 +55,7 @@
 
         disableDevtool();
     </script>
+
 </body>
 
 </html>

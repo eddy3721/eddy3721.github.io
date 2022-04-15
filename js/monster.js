@@ -50,7 +50,7 @@ var M = {
                 "ASPD": 20,
                 "skills": [2],
                 "drop": {
-                    "eq": 0,
+                    "eq": 3,
                     "map": 0
                 }
             },

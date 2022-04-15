@@ -11,6 +11,7 @@ body {
 .bg-blue {
     background: linear-gradient(0deg, rgb(163, 207, 239) 0%, rgb(12, 47, 103) 100%);
     min-height: 100%;
+    min-height: 100vh;
 }
 
 label,
@@ -353,4 +354,20 @@ th {
 .report_red {
     color: #f00;
     font-weight: bold;
+}
+
+.bag_column th {
+    min-width: 60px;
+}
+
+.bag_column th:nth-child(1) {
+    min-width: 120px;
+}
+
+.bag_table {
+    margin-bottom: 50px;
+}
+
+.bc-yellow {
+    background-color: #fdf7a6;
 }

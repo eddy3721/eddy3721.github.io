@@ -2,6 +2,7 @@
 
 function checkLogin() {
     let user = localStorage.getItem("userInfo");
+    let eq = eq_addition();
     if (user == null) {
         location.href = "login.html";
     } else {
@@ -10,17 +11,17 @@ function checkLogin() {
         $('#user_name').html($('#user_name').html() + user['name']);
         $('#user_LV').html($('#user_LV').html() + user['LV']);
         $('#user_EXP').html($('#user_EXP').html() + user['user_EXP'] + ' / ' + getNeedEXP());
-        $('#user_HP').html($('#user_HP').html() + user['HP']);
-        $('#user_MP').html($('#user_MP').html() + user['MP']);
         $('#user_money').html($('#user_money').html() + user['user_money']);
-        $('#user_ATK').html($('#user_ATK').html() + user['ATK']);
-        $('#user_MATK').html($('#user_MATK').html() + user['MATK']);
-        $('#user_DEF').html($('#user_DEF').html() + user['DEF']);
-        $('#user_MDEF').html($('#user_MDEF').html() + user['MDEF']);
-        $('#user_HIT').html($('#user_HIT').html() + user['HIT']);
-        $('#user_FLEE').html($('#user_FLEE').html() + user['FLEE']);
-        $('#user_ASPD').html($('#user_ASPD').html() + user['ASPD']);
-        $('#user_STB').html($('#user_STB').html() + user['STB'] + '%');
+        $('#user_HP').html($('#user_HP').html() + (user['HP'] + eq['HP']));
+        $('#user_MP').html($('#user_MP').html() + (user['MP'] + eq['MP']));
+        $('#user_ATK').html($('#user_ATK').html() + (user['ATK'] + eq['ATK']));
+        $('#user_MATK').html($('#user_MATK').html() + (user['MATK'] + eq['MATK']));
+        $('#user_DEF').html($('#user_DEF').html() + (user['DEF'] + eq['DEF']));
+        $('#user_MDEF').html($('#user_MDEF').html() + (user['MDEF'] + eq['MDEF']));
+        $('#user_HIT').html($('#user_HIT').html() + (user['HIT'] + eq['HIT']));
+        $('#user_FLEE').html($('#user_FLEE').html() + (user['FLEE'] + eq['FLEE']));
+        $('#user_ASPD').html($('#user_ASPD').html() + (user['ASPD'] + eq['ASPD']));
+        $('#user_STB').html($('#user_STB').html() + (user['STB'] + eq['STB']) + '%');
         $('#user_skillPoint').html($('#user_skillPoint').html() + user['user_skillPoint']);
 
         $('#user_place').html('你現在的位置: ' + localStorage.getItem("user_place"));
@@ -35,9 +36,11 @@ function save_name() {
     } else {
         $('#err_msg').html('');
         let obj = user_initial();
+        let item_obj = item_initial();
         obj['name'] = name;
         let place = "青青草原";
         localStorage.setItem("userInfo", encode(JSON.stringify(obj), key));
+        localStorage.setItem("item", encode(JSON.stringify(item_obj), key));
         localStorage.setItem("user_place", place);
         location.href = "index.html";
     }
@@ -189,7 +192,24 @@ function user_initial() {
         "ASPD": 20,
         "STB": 50,
         "user_skillPoint": 0,
-        'skills': [12, 13]
+        'skills': [12, 13],
+        "eq": {
+            "weapon": 0,
+            "head": 0,
+            "body": 0,
+            "foot": 0
+        }
+    }
+    return obj;
+}
+
+function item_initial() {
+    let obj = {
+        "head": [],
+        "body": [],
+        "foot": [],
+        "weapon": [],
+        "map": []
     }
     return obj;
 }
@@ -225,6 +245,7 @@ function sp_reset() {
         new_user['user_skillPoint'] = point;
         new_user['user_money'] = user['user_money'] - 100;
         new_user['skills'] = user['skills'];
+        new_user['eq'] = user['eq'];
 
         localStorage.setItem("userInfo", encode(JSON.stringify(new_user), key));
         $('#user_skillPoint').html('你擁有的能力點 : ' + point);
@@ -240,4 +261,49 @@ function sp_reset() {
         });
     }
 
+}
+
+//經驗更新
+function getNeedEXP() {
+    let user = JSON.parse(decode(localStorage.getItem("userInfo"), key));
+    let n = Math.floor((((Math.pow(user['LV'] - 1), 3) + 60) / 5 * ((user['LV'] - 1) * 3 + 10)) / 10) * 10;
+    return n;
+}
+
+//裝備加成
+function eq_addition() {
+    let user = JSON.parse(decode(localStorage.getItem("userInfo"), key));
+    let type = ['weapon', 'head', 'body', 'foot'];
+    let obj = {
+        "HP": 0,
+        "MP": 0,
+        "ATK": 0,
+        "MATK": 0,
+        "DEF": 0,
+        "MDEF": 0,
+        "FLEE": 0,
+        "HIT": 0,
+        "STB": 0,
+        "ASPD": 0,
+        "skills": []
+    };
+
+    for (let i = 0; i < type.length; i++) {
+        let item_num = user['eq'][type[i]];
+        if (item_num) {
+            let item = item_eq(item_num);
+            obj['HP'] += item['HP'];
+            obj['MP'] += item['MP'];
+            obj['ATK'] += item['ATK'];
+            obj['MATK'] += item['MATK'];
+            obj['DEF'] += item['DEF'];
+            obj['MDEF'] += item['MDEF'];
+            obj['FLEE'] += item['FLEE'];
+            obj['HIT'] += item['HIT'];
+            obj['STB'] += item['STB'];
+            obj['ASPD'] += item['ASPD'];
+            obj['skills'] = obj['skills'].concat(item['skills']);
+        }
+    }
+    return obj;
 }
