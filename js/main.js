@@ -192,7 +192,7 @@ function user_initial() {
         "ASPD": 20,
         "STB": 50,
         "user_skillPoint": 0,
-        'skills': [12, 13],
+        'skills': [],
         "eq": {
             "weapon": 0,
             "head": 0,
@@ -209,7 +209,8 @@ function item_initial() {
         "body": [],
         "foot": [],
         "weapon": [],
-        "map": []
+        "map": [],
+        "skill": [12, 13]
     }
     return obj;
 }

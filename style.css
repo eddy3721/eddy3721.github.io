@@ -365,9 +365,15 @@ th {
 }
 
 .bag_table {
-    margin-bottom: 50px;
+    margin-bottom: 10px;
 }
 
 .bc-yellow {
     background-color: #fdf7a6;
+}
+
+#show_table>div {
+    width: 100%;
+    overflow-x: auto;
+    margin-bottom: 50px;
 }

@@ -15,7 +15,8 @@ var M = {
                 "skills": [1, 2],
                 "drop": {
                     "eq": 1,
-                    "map": 0
+                    "map": 0,
+                    "skill": 0,
                 }
             },
             {
@@ -33,7 +34,8 @@ var M = {
                 "skills": [2, 3],
                 "drop": {
                     "eq": 2,
-                    "map": 0
+                    "map": 0,
+                    "skill": 0
                 }
             },
             {
@@ -51,7 +53,8 @@ var M = {
                 "skills": [2],
                 "drop": {
                     "eq": 3,
-                    "map": 0
+                    "map": 0,
+                    "skill": 0
                 }
             },
         ],
@@ -70,7 +73,8 @@ var M = {
                 "skills": [4, 6],
                 "drop": {
                     "eq": 0,
-                    "map": 0
+                    "map": 0,
+                    "skill": 0
                 }
             },
             {
@@ -88,7 +92,8 @@ var M = {
                 "skills": [2, 3],
                 "drop": {
                     "eq": 0,
-                    "map": 0
+                    "map": 0,
+                    "skill": 0
                 }
             }
         ],
@@ -107,7 +112,8 @@ var M = {
                 "skills": [5, 6],
                 "drop": {
                     "eq": 0,
-                    "map": 0
+                    "map": 0,
+                    "skill": 0
                 }
             },
             {
@@ -125,7 +131,8 @@ var M = {
                 "skills": [7],
                 "drop": {
                     "eq": 0,
-                    "map": 0
+                    "map": 0,
+                    "skill": 0
                 }
             }
         ],
@@ -144,7 +151,8 @@ var M = {
                 "skills": [11],
                 "drop": {
                     "eq": 0,
-                    "map": 0
+                    "map": 0,
+                    "skill": 0
                 }
             },
             {
@@ -162,7 +170,8 @@ var M = {
                 "skills": [14, 15],
                 "drop": {
                     "eq": 0,
-                    "map": 0
+                    "map": 0,
+                    "skill": 0
                 }
             },
             {
@@ -180,7 +189,8 @@ var M = {
                 "skills": [8, 9, 10],
                 "drop": {
                     "eq": 0,
-                    "map": 0
+                    "map": 0,
+                    "skill": 0
                 }
             }
         ]
@@ -201,7 +211,8 @@ var M = {
                 "skills": [16],
                 "drop": {
                     "eq": 0,
-                    "map": 0
+                    "map": 0,
+                    "skill": 0
                 }
             },
             {
@@ -219,7 +230,8 @@ var M = {
                 "skills": [17, 18],
                 "drop": {
                     "eq": 0,
-                    "map": 0
+                    "map": 0,
+                    "skill": 0
                 }
             },
             {
@@ -237,7 +249,8 @@ var M = {
                 "skills": [19, 20],
                 "drop": {
                     "eq": 0,
-                    "map": 0
+                    "map": 0,
+                    "skill": 0
                 }
             },
             {
@@ -255,7 +268,8 @@ var M = {
                 "skills": [17, 18],
                 "drop": {
                     "eq": 0,
-                    "map": 0
+                    "map": 0,
+                    "skill": 0
                 }
             }
         ]
