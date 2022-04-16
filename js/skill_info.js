@@ -146,5 +146,89 @@ function sk_info(n) {
                 "cost": 10
             }
             return obj;
+        case 21: //水槍突刺
+            obj = {
+                'name': '水槍突刺',
+                "intro": '將水流凝聚在長槍之上，向前突刺',
+                "cost": 15
+            }
+            return obj;
+        case 22: //黏液包覆
+            obj = {
+                'name': '黏液包覆',
+                "intro": '用黏液包覆全身，能有效地減輕傷害',
+                "cost": 10
+            }
+            return obj;
+        case 23: //高壓水砲
+            obj = {
+                'name': '高壓水砲',
+                "intro": '壓縮水流後一次發射的強力水砲',
+                "cost": 15
+            }
+            return obj;
+        case 24: //水遁/水連彈
+            obj = {
+                'name': '水遁/水連彈',
+                "intro": '發射無數的水彈向四面八方散開',
+                "cost": 15
+            }
+            return obj;
+        case 25: //水之呼吸‧壹之型‧水面斬
+            obj = {
+                'name': '水之呼吸‧壹之型‧水面斬',
+                "intro": '透過特殊呼吸法所使出的招式，以極快的速度向前水平斬擊',
+                "cost": 25
+            }
+            return obj;
+        case 26: //扔石子
+            obj = {
+                'name': '扔石子',
+                "intro": '撿起地上的石頭隨便亂扔',
+                "cost": 10
+            }
+            return obj;
+        case 27: //撕咬
+            obj = {
+                'name': '撕咬',
+                "intro": '野獸時常使用的招式，用利齒撕裂對手',
+                "cost": 10
+            }
+            return obj;
+        case 28: //棍棒敲擊
+            obj = {
+                'name': '棍棒敲擊',
+                "intro": '敲暈帶回家',
+                "cost": 12
+            }
+            return obj;
+        case 29: //毒針
+            obj = {
+                'name': '毒針',
+                "intro": '用有毒的蜂尾攻擊敵人',
+                "cost": 12
+            }
+            return obj;
+        case 30: //孢子
+            obj = {
+                'name': '孢子',
+                "intro": '散發出有毒的孢子，另敵人吸入口鼻中',
+                "cost": 12
+            }
+            return obj;
+        case 31: //蜂蜜治癒
+            obj = {
+                'name': '蜂蜜治癒',
+                "intro": '工蜂將採集的蜂蜜獻給蜂后，能夠回復生命值',
+                "cost": 15
+            }
+            return obj;
+        case 32: //連續毒針
+            obj = {
+                'name': '連續毒針',
+                "intro": '連續射出有毒的尾針，小心變成刺蝟!',
+                "cost": 20
+            }
+            return obj;
     }
 }

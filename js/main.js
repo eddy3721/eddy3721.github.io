@@ -198,7 +198,8 @@ function user_initial() {
             "head": 0,
             "body": 0,
             "foot": 0
-        }
+        },
+        "time": 0
     }
     return obj;
 }
@@ -307,4 +308,18 @@ function eq_addition() {
         }
     }
     return obj;
+}
+
+function time_check(n) {
+    let user = JSON.parse(decode(localStorage.getItem("userInfo"), key));
+    let last_time = user['time'];
+    let now_time = Math.floor((+new Date()) / 1000);
+    console.log(now_time - last_time);
+    if (now_time - last_time >= n) {
+        user['time'] = now_time;
+        localStorage.setItem("userInfo", encode(JSON.stringify(user), key));
+        return true;
+    } else {
+        return false;
+    }
 }

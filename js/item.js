@@ -73,5 +73,23 @@ function item_eq(n) { //裝備 頭部:head 身體:body 腿部:foot 武器:weapon
                 "skills": [10]
             }
             return obj;
+        case 5: //史萊姆長槍
+            obj = {
+                'name': '史萊姆長槍',
+                "type": "weapon",
+                "intro": '史萊姆王國的制式長槍，槍上的凹痕可以很好地匯引水流',
+                "HP": 0,
+                "MP": 0,
+                "ATK": 5,
+                "MATK": 0,
+                "DEF": 1,
+                "MDEF": 1,
+                "FLEE": 0,
+                "HIT": 0,
+                "STB": 0,
+                "ASPD": 0,
+                "skills": []
+            }
+            return obj;
     }
 }
