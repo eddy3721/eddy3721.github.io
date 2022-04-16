@@ -2,10 +2,10 @@
 
 function checkLogin() {
     let user = localStorage.getItem("userInfo");
-    let eq = eq_addition();
     if (user == null) {
         location.href = "login.html";
     } else {
+        let eq = eq_addition();
         user = JSON.parse(decode((user), key));
 
         $('#user_name').html($('#user_name').html() + user['name']);
