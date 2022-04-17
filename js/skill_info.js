@@ -230,5 +230,12 @@ function sk_info(n) {
                 "cost": 20
             }
             return obj;
+        case 33: //惡兆蓄力
+            obj = {
+                'name': '惡兆蓄力',
+                "intro": '抬起左手凝聚黃金之力，下一回合進行猛烈攻擊',
+                "cost": 30
+            }
+            return obj;
     }
 }
