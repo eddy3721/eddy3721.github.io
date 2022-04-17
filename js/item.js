@@ -59,7 +59,7 @@ function item_eq(n) { //裝備 頭部:head 身體:body 腿部:foot 武器:weapon
             obj = {
                 'name': '貓咪兜帽',
                 "type": "head",
-                "intro": '有著貓耳朵的兜帽',
+                "intro": '有著貓耳朵的兜帽，貓咪看到都會忍不住給你一個讚',
                 "HP": 20,
                 "MP": 10,
                 "ATK": 0,
