@@ -1,6 +1,7 @@
 function sk(n, i, a, b) { //a:使用技能方 b:受技能方
     let info = {};
     let dmg;
+    let new_m;
     let obj = {
         'a': a,
         'b': b,
@@ -387,7 +388,7 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
         case 16: //召喚寶可夢
             dmg = 0;
             rand = Math.floor(Math.random() * 2) + 1;
-            let new_m = JSON.parse(JSON.stringify(M['大木研究所']['1'][rand]));
+            new_m = JSON.parse(JSON.stringify(M['大木研究所']['1'][rand]));
 
             msg += '<div class="flex report_red"><div class="numberReportLine">' + i + '</div>';
             msg += a['name'] + ' :「就決定是你了! ' + new_m['name'] + '!」</div>';
@@ -799,7 +800,7 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
             msg += a['name'] + ' 使出了 連續毒針!</div>';
 
             rand = Math.floor(Math.random() * 3) + 1;
-            for (let j = 1; j < rand; j++) {
+            for (let j = 1; j <= rand; j++) {
                 dmg = Math.ceil(a['MATK'] * 1.3);
                 info = getDamage(dmg, b['MDEF'], a['STB'], a['HIT'], b['FLEE']);
                 dmg = info['dmg'];
@@ -822,6 +823,141 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
                     b['state'] = "中毒";
                 }
             }
+
+            obj = {
+                'a': a,
+                'b': b,
+                'i': i,
+                "dmg": dmg,
+                "msg": msg
+            }
+            return obj;
+        case 33: //惡兆蓄力
+            dmg = 0;
+
+            msg += '<div class="flex report_blue"><div class="numberReportLine">' + i + '</div>';
+            msg += a['name'] + ' 舉起了左手!</div>';
+            a['state'] = "惡兆蓄力";
+
+            obj = {
+                'a': a,
+                'b': b,
+                'i': i,
+                "dmg": dmg,
+                "msg": msg
+            }
+            return obj;
+        case 34: //黃金匕首揮擊
+            msg += '<div class="flex report_blue"><div class="numberReportLine">' + i + '</div>';
+            msg += a['name'] + ' 左手凝聚出一把黃金匕首! 連續揮擊!</div>';
+
+            for (let j = 1; j <= 3; j++) {
+                dmg = Math.ceil(a['ATK'] * 1.3);
+                info = getDamage(dmg, b['DEF'], a['STB'], a['HIT'], b['FLEE']);
+                dmg = info['dmg'];
+
+                i++;
+                msg += '<div class="flex report_blue"><div class="numberReportLine">' + i + '</div>';
+                msg += '第' + j + '擊';
+                if (dmg == -1) {
+                    msg += ' 但是被閃開了!';
+                    return obj;
+                }
+                if (info['critical']) {
+                    msg += ' 會心一擊!';
+                }
+                msg += ' 對 ' + b['name'] + ' 造成了' + dmg + '點傷害</div>';
+
+                b['HP'] -= dmg;
+            }
+
+            obj = {
+                'a': a,
+                'b': b,
+                'i': i,
+                "dmg": dmg,
+                "msg": msg
+            }
+            return obj;
+        case 35: //黃金匕首投擲
+            dmg = Math.ceil(a['ATK'] * 1.5);
+            info = getDamage(dmg, b['DEF'], a['STB'], a['HIT'], b['FLEE']);
+            dmg = info['dmg'];
+
+            msg += '<div class="flex report_blue"><div class="numberReportLine">' + i + '</div>';
+            msg += a['name'] + ' 左手凝聚出一把黃金匕首! 投擲了出去!';
+            if (dmg == -1) {
+                msg += ' 但是被閃開了!';
+                return obj;
+            }
+            if (info['critical']) {
+                msg += ' 會心一擊!';
+            }
+            msg += ' 對 ' + b['name'] + ' 造成了' + dmg + '點傷害</div>';
+
+            b['HP'] -= dmg;
+
+            obj = {
+                'a': a,
+                'b': b,
+                'i': i,
+                "dmg": dmg,
+                "msg": msg
+            }
+            return obj;
+        case 36: //惡兆二階段
+            dmg = 0;
+            new_m = JSON.parse(JSON.stringify(M['大木研究所']['1'][5]));
+
+            msg += '<div class="flex report_red"><div class="numberReportLine">' + i + '</div>';
+            msg += a['name'] + ' :「......哦，不容小覷啊，褪色者不愧是戰士的後代。」</div>';
+
+            a = new_m;
+
+            msg += '<div class="flex report_blue"><div class="numberReportLine">' + i + '</div>';
+            msg += a['name'] + ' 舉起了左手!</div>';
+            a['state'] = "惡兆蓄力2";
+
+            obj = {
+                'a': a,
+                'b': b,
+                'i': i,
+                "dmg": dmg,
+                "msg": msg
+            }
+            return obj;
+        case 37: //惡兆蓄力2
+            dmg = 0;
+
+            msg += '<div class="flex report_blue"><div class="numberReportLine">' + i + '</div>';
+            msg += a['name'] + ' 舉起了左手!</div>';
+            a['state'] = "惡兆蓄力2";
+
+            obj = {
+                'a': a,
+                'b': b,
+                'i': i,
+                "dmg": dmg,
+                "msg": msg
+            }
+            return obj;
+        case 38: //黃金大槌
+            dmg = Math.ceil(a['ATK'] * 1.8);
+            info = getDamage(dmg, b['DEF'], a['STB'], a['HIT'], b['FLEE']);
+            dmg = info['dmg'];
+
+            msg += '<div class="flex report_blue"><div class="numberReportLine">' + i + '</div>';
+            msg += a['name'] + ' 左手凝聚出一把黃金大槌! 高高躍起!';
+            if (dmg == -1) {
+                msg += ' 但是被閃開了!';
+                return obj;
+            }
+            if (info['critical']) {
+                msg += ' 會心一擊!';
+            }
+            msg += ' 對 ' + b['name'] + ' 造成了' + dmg + '點傷害</div>';
+
+            b['HP'] -= dmg;
 
             obj = {
                 'a': a,
