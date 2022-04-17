@@ -10,6 +10,7 @@ function abnormalState(a, b, att, i) { //a:受異常方 b:施加方 att:who的�
             msg += a['name'] + ' 暈眩了! 動彈不得!</div>';
 
             att = Math.abs(att - 1);
+            a['state'] = null;
 
             obj = {
                 'attacker': att,
