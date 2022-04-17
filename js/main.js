@@ -190,7 +190,7 @@ function user_initial() {
         "MDEF": 10,
         "HIT": 10,
         "FLEE": 10,
-        "ASPD": 100,
+        "ASPD": 20,
         "STB": 50,
         "user_skillPoint": 0,
         'skills': [],
