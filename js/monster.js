@@ -271,7 +271,7 @@ var M = {
                 "drop": {
                     "eq": 0,
                     "map": 0,
-                    "skill": 0
+                    "skill": 33
                 }
             }
         ]
