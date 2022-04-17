@@ -123,9 +123,9 @@ async function fighting(n) {
             content += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
             content += '你獲得了 ' + getEXP + ' 點經驗值</div>';
             content += '<div class="flex"><div class="numberReportLine">' + (i + 1) + '</div>';
-            content += '你獲得了 ' + getEXP + ' 眾神幣</div>';
+            content += '你獲得了 ' + (getEXP + 10) + ' 眾神幣</div>';
             EXP_update(getEXP);
-            money_update(getEXP);
+            money_update(getEXP + 10);
         } else {
             i++;
             content += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
