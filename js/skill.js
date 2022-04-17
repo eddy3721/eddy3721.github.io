@@ -914,6 +914,7 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
 
             a = new_m;
 
+            i++;
             msg += '<div class="flex report_blue"><div class="numberReportLine">' + i + '</div>';
             msg += a['name'] + ' 舉起了左手!</div>';
             a['state'] = "惡兆蓄力2";
