@@ -547,7 +547,7 @@ var M = {
                 "HIT": 10,
                 "STB": 70,
                 "ASPD": 20,
-                "skills": [29, 31],
+                "skills": [29, 31, 32],
                 "drop": {
                     "eq": 0,
                     "map": 0,
