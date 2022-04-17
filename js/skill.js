@@ -709,7 +709,7 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
                 "msg": msg
             }
 
-            if (Math.floor(Mayh.random() * 100) + 1 > 80) {
+            if (Math.floor(Math.random() * 100) + 1 > 80) {
                 b['state'] = "暈眩";
             }
 
@@ -732,7 +732,7 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
 
             b['HP'] -= dmg;
 
-            if (Math.floor(Mayh.random() * 100) + 1 > 60) {
+            if (Math.floor(Math.random() * 100) + 1 > 60) {
                 b['state'] = "中毒";
             }
 
@@ -763,7 +763,7 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
 
             b['HP'] -= dmg;
 
-            if (Math.floor(Mayh.random() * 100) + 1 > 60) {
+            if (Math.floor(Math.random() * 100) + 1 > 60) {
                 b['state'] = "中毒";
             }
 
@@ -818,7 +818,7 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
 
                 b['HP'] -= dmg;
 
-                if (Math.floor(Mayh.random() * 100) + 1 > 60) {
+                if (Math.floor(Math.random() * 100) + 1 > 60) {
                     b['state'] = "中毒";
                 }
             }
