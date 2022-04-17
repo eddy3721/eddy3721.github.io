@@ -175,6 +175,7 @@ function skill_confirm() {
     }
 }
 
+//玩家初始化
 function user_initial() {
     let obj = {
         "name": null,
@@ -189,7 +190,7 @@ function user_initial() {
         "MDEF": 10,
         "HIT": 10,
         "FLEE": 10,
-        "ASPD": 20,
+        "ASPD": 100,
         "STB": 50,
         "user_skillPoint": 0,
         'skills': [],
@@ -216,6 +217,7 @@ function item_initial() {
     return obj;
 }
 
+//洗點
 function sp_reset() {
     const Toast = Swal.mixin({
         toast: true,

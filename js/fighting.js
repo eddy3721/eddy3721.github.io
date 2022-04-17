@@ -17,6 +17,8 @@ async function fighting(n) {
     let getMoney = 0;
     let info = {};
     let obj;
+    user['state'] = null; //玩家狀態
+    m['state'] = null; //玩家狀態
 
     if (time_check(CD[n]) == false) {
         content += '<div class="flex"><div class="numberReportLine">1</div>';
@@ -79,16 +81,26 @@ async function fighting(n) {
 
             //異常判定
             if (attacker == 0) {
-                i++;
-                if (info['state'] != null) {
-                    obj = abnormalState(info['state'], i, user, m);
+                if (user['state'] != null) {
+                    i++;
+                    obj = abnormalState(user, m, attacker, i);
 
                     uesr = obj['a'];
                     m = obj['b'];
                     content += obj['msg'];
                     i = obj['i'];
                     attacker = obj['attacker'];
-                    info['state'] = obj['state'];
+                }
+            } else {
+                if (m['state'] != null) {
+                    i++;
+                    obj = abnormalState(m, user, attacker, i);
+
+                    uesr = obj['b'];
+                    m = obj['a'];
+                    content += obj['msg'];
+                    i = obj['i'];
+                    attacker = obj['attacker'];
                 }
             }
         }
@@ -115,6 +127,7 @@ async function fighting(n) {
             EXP_update(getEXP);
             money_update(getEXP);
         } else {
+            i++;
             content += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
             content += user['name'] + ' 戰敗了! ' + m['name'] + '還有 ' + m['HP'] + ' 點血量</div>';
             i++;
@@ -195,53 +208,6 @@ function getDamage(a, b, s, h, f) {
     }
     obj['dmg'] = Math.floor(obj['dmg']);
     return obj;
-}
-
-//異常狀態
-function abnormalState(s, i, a, b) { //a:受異常方 b:施加方
-    let obj;
-    let dmg;
-    let state;
-    let msg = '';
-    switch (s) {
-        case "暈眩":
-            msg += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
-            msg += a['name'] + ' 暈眩了! 動彈不得!</div>';
-            obj = {
-                'attacker': 1,
-                'i': i,
-                'state': null,
-                'msg': msg,
-                'a': a,
-                'b': b
-            }
-            return obj;
-        case "燒傷":
-            dmg = Math.floor(a['HP'] * 0.05);
-            if (dmg < 1) {
-                dmg = 1;
-            }
-            msg += '<div class="flex report_blue"><div class="numberReportLine">' + i + '</div>';
-            msg += a['name'] + ' 燒傷了! 受到' + dmg + '點傷害</div>';
-
-            a['HP'] -= dmg;
-
-            if (Math.floor(Math.random() * 10) >= 5) {
-                state = null;
-            } else {
-                state = "燒傷";
-            }
-
-            obj = {
-                'attacker': 0,
-                'i': i,
-                'state': state,
-                'msg': msg,
-                'a': a,
-                'b': b
-            }
-            return obj;
-    }
 }
 
 //遇敵
@@ -397,10 +363,15 @@ function meetMonster(n) {
 
 function getBatter(n) {
     let max_batter = Math.trunc(n / 10); //最高連擊數
+    let batter;
     if (max_batter > 5) {
         max_batter = 5;
     }
-    let batter = Math.floor(Math.random() * max_batter) + 1; //連擊判定
+    for (batter = 1; batter < max_batter; batter++) {
+        if (Math.floor(Math.random() * 100) + 1 <= 50) {
+            break;
+        }
+    }
     return batter;
 }
 

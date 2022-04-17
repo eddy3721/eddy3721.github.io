@@ -6,7 +6,6 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
         'b': b,
         'i': i,
         "dmg": 0,
-        "state": null,
         "msg": ''
     };
     let msg = '';
@@ -34,7 +33,6 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
                 'b': b,
                 'i': i,
                 "dmg": dmg,
-                "state": null,
                 "msg": msg
             }
             return obj;
@@ -61,7 +59,6 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
                 'b': b,
                 'i': i,
                 "dmg": dmg,
-                "state": null,
                 "msg": msg
             }
             return obj;
@@ -88,7 +85,6 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
                 'b': b,
                 'i': i,
                 "dmg": dmg,
-                "state": null,
                 "msg": msg
             }
             return obj;
@@ -115,7 +111,6 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
                 'b': b,
                 'i': i,
                 "dmg": dmg,
-                "state": null,
                 "msg": msg
             }
             return obj;
@@ -142,7 +137,6 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
                 'b': b,
                 'i': i,
                 "dmg": dmg,
-                "state": null,
                 "msg": msg
             }
             return obj;
@@ -169,7 +163,6 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
                 'b': b,
                 'i': i,
                 "dmg": dmg,
-                "state": null,
                 "msg": msg
             }
             return obj;
@@ -190,6 +183,7 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
             msg += ' 對 ' + b['name'] + ' 造成了' + dmg + '點傷害</div>';
 
             b['HP'] -= dmg;
+            b['state'] = "暈眩";
             i++;
 
             obj = {
@@ -197,7 +191,6 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
                 'b': b,
                 'i': i,
                 "dmg": dmg,
-                "state": "暈眩",
                 "msg": msg
             }
             return obj;
@@ -280,13 +273,13 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
             msg += ' 對 ' + b['name'] + ' 造成了' + dmg + '點傷害</div>';
 
             b['HP'] -= dmg;
+            b['state'] = "燒傷";
 
             obj = {
                 'a': a,
                 'b': b,
                 'i': i,
                 "dmg": dmg,
-                "state": "燒傷",
                 "msg": msg
             }
             return obj;
@@ -313,7 +306,6 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
                 'b': b,
                 'i': i,
                 "dmg": dmg,
-                "state": null,
                 "msg": msg
             }
             return obj;
@@ -331,7 +323,6 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
                 'b': b,
                 'i': i,
                 "dmg": dmg,
-                "state": null,
                 "msg": msg
             }
             return obj;
@@ -358,7 +349,6 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
                 'b': b,
                 'i': i,
                 "dmg": dmg,
-                "state": null,
                 "msg": msg
             }
             return obj;
@@ -391,7 +381,6 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
                 'b': b,
                 'i': i,
                 "dmg": dmg,
-                "state": null,
                 "msg": msg
             }
             return obj;
@@ -410,7 +399,6 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
                 'b': b,
                 'i': i,
                 "dmg": dmg,
-                "state": null,
                 "msg": msg
             }
             return obj;
@@ -437,7 +425,6 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
                 'b': b,
                 'i': i,
                 "dmg": dmg,
-                "state": null,
                 "msg": msg
             }
             return obj;
@@ -458,7 +445,6 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
                 'b': b,
                 'i': i,
                 "dmg": dmg,
-                "state": null,
                 "msg": msg
             }
             return obj;
@@ -485,7 +471,6 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
                 'b': b,
                 'i': i,
                 "dmg": dmg,
-                "state": null,
                 "msg": msg
             }
             return obj;
@@ -512,7 +497,6 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
                 'b': b,
                 'i': i,
                 "dmg": dmg,
-                "state": null,
                 "msg": msg
             }
             return obj;
@@ -539,7 +523,6 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
                 'b': b,
                 'i': i,
                 "dmg": dmg,
-                "state": null,
                 "msg": msg
             }
             return obj;
@@ -557,7 +540,6 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
                 'b': b,
                 'i': i,
                 "dmg": dmg,
-                "state": null,
                 "msg": msg
             }
             return obj;
@@ -584,7 +566,6 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
                 'b': b,
                 'i': i,
                 "dmg": dmg,
-                "state": null,
                 "msg": msg
             }
             return obj;
@@ -618,7 +599,6 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
                 'b': b,
                 'i': i,
                 "dmg": dmg,
-                "state": null,
                 "msg": msg
             }
             return obj;
@@ -648,7 +628,6 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
                 'b': b,
                 'i': i,
                 "dmg": dmg,
-                "state": null,
                 "msg": msg
             }
             return obj;
@@ -675,7 +654,6 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
                 'b': b,
                 'i': i,
                 "dmg": dmg,
-                "state": null,
                 "msg": msg
             }
             return obj;
@@ -702,7 +680,6 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
                 'b': b,
                 'i': i,
                 "dmg": dmg,
-                "state": null,
                 "msg": msg
             }
             return obj;
@@ -729,12 +706,11 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
                 'b': b,
                 'i': i,
                 "dmg": dmg,
-                "state": null,
                 "msg": msg
             }
 
             if (Math.floor(Mayh.random() * 100) + 1 > 80) {
-                obj['state'] = "暈眩";
+                b['state'] = "暈眩";
             }
 
             return obj;
@@ -756,12 +732,15 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
 
             b['HP'] -= dmg;
 
+            if (Math.floor(Mayh.random() * 100) + 1 > 60) {
+                b['state'] = "中毒";
+            }
+
             obj = {
                 'a': a,
                 'b': b,
                 'i': i,
                 "dmg": dmg,
-                "state": null,
                 "msg": msg
             }
 
@@ -784,12 +763,15 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
 
             b['HP'] -= dmg;
 
+            if (Math.floor(Mayh.random() * 100) + 1 > 60) {
+                b['state'] = "中毒";
+            }
+
             obj = {
                 'a': a,
                 'b': b,
                 'i': i,
                 "dmg": dmg,
-                "state": null,
                 "msg": msg
             }
 
@@ -835,6 +817,10 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
                 msg += ' 對 ' + b['name'] + ' 造成了' + dmg + '點傷害</div>';
 
                 b['HP'] -= dmg;
+
+                if (Math.floor(Mayh.random() * 100) + 1 > 60) {
+                    b['state'] = "中毒";
+                }
             }
 
             obj = {
@@ -842,7 +828,6 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
                 'b': b,
                 'i': i,
                 "dmg": dmg,
-                "state": null,
                 "msg": msg
             }
             return obj;
