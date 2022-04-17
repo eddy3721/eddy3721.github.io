@@ -67,5 +67,42 @@ function abnormalState(a, b, att, i) { //a:受異常方 b:施加方 att:who的�
                 'b': b
             }
             return obj;
+        case "惡兆蓄力":
+            useSkill = Math.floor(Math.random() * 2) + 34;
+            info = sk(useSkill, i, a, b);
+            a = info['a'];
+            b = info['b'];
+            i = info['i'];
+            msg += info['msg'];
+
+            a['state'] = null;
+
+            obj = {
+                'attacker': att,
+                'i': i,
+                'msg': msg,
+                'a': a,
+                'b': b
+            }
+            return obj;
+        case "惡兆蓄力2":
+            arr = [38, 34];
+            useSkill = arr[Math.floor(Math.random() * 2)];
+            info = sk(useSkill, i, a, b);
+            a = info['a'];
+            b = info['b'];
+            i = info['i'];
+            msg += info['msg'];
+
+            a['state'] = null;
+
+            obj = {
+                'attacker': att,
+                'i': i,
+                'msg': msg,
+                'a': a,
+                'b': b
+            }
+            return obj;
     }
 }
