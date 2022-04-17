@@ -374,6 +374,9 @@ async function special_fighting() {
             content += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
             content += m['name'] + ' 倒下了，' + user['name'] + ' 還有 ' + user['HP'] + ' 點血量</div>';
             i++;
+            content += '<div class="flex report_red"><div class="numberReportLine">' + i + '</div>';
+            content += a['name'] + ' : 「還是不更新，欸嘿」</div>';
+            i++;
             //掉落物
             let drop = drop_item(m, i);
             i = drop['i'];
