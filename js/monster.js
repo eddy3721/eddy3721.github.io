@@ -235,6 +235,44 @@ var M = {
                     "map": 0,
                     "skill": 0
                 }
+            },
+            {
+                "name": "惡兆瑪爾基特",
+                "LV": 66,
+                "HP": 5000,
+                "ATK": 220,
+                "MATK": 220,
+                "DEF": 120,
+                "MDEF": 120,
+                "FLEE": 10,
+                "HIT": 30,
+                "STB": 70,
+                "ASPD": 30,
+                "skills": [33],
+                "drop": {
+                    "eq": 0,
+                    "map": 0,
+                    "skill": 0
+                }
+            },
+            {
+                "name": "惡兆瑪爾基特",
+                "LV": 66,
+                "HP": 2500,
+                "ATK": 240,
+                "MATK": 240,
+                "DEF": 150,
+                "MDEF": 150,
+                "FLEE": 10,
+                "HIT": 30,
+                "STB": 70,
+                "ASPD": 30,
+                "skills": [37],
+                "drop": {
+                    "eq": 0,
+                    "map": 0,
+                    "skill": 0
+                }
             }
         ]
     },
