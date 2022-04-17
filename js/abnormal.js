@@ -29,7 +29,7 @@ function abnormalState(a, b, att, i) { //a:受異常方 b:施加方 att:who的�
 
             a['HP'] -= dmg;
 
-            if (Math.floor(Math.random() * 10) <= 0) {
+            if (Math.floor(Math.random() * 10) <= 3) {
                 state = null;
             } else {
                 a['state'] = "燒傷";
