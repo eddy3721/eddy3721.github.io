@@ -107,9 +107,7 @@ function decode(f, j) {
 function skill_btn_reduce(n, quantity) {
     let point = Number($('#user_skillPoint').html().substring(10));
     let old = Number($('#SP_' + n).html());
-    if (old - quantity < 0) {
-        $('#SP_' + n).html(0);
-    } else {
+    if (old - quantity >= 0) {
         $('#user_skillPoint').html('你擁有的能力點 : ' + (point + quantity));
         $('#SP_' + n).html(old - quantity);
     }
