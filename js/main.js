@@ -104,23 +104,23 @@ function decode(f, j) {
     return unescape(atob(k))
 };
 
-function skill_btn_reduce(n) {
+function skill_btn_reduce(n, quantity) {
     let point = Number($('#user_skillPoint').html().substring(10));
     let old = Number($('#SP_' + n).html());
-    if (!old) {
+    if (old - quantity < 0) {
         $('#SP_' + n).html(0);
     } else {
-        $('#user_skillPoint').html('你擁有的能力點 : ' + (point + 1));
-        $('#SP_' + n).html(old - 1);
+        $('#user_skillPoint').html('你擁有的能力點 : ' + (point + quantity));
+        $('#SP_' + n).html(old - quantity);
     }
 }
 
-function skill_btn_add(n) {
+function skill_btn_add(n, quantity) {
     let point = Number($('#user_skillPoint').html().substring(10));
     let old = Number($('#SP_' + n).html());
-    if (point) {
-        $('#user_skillPoint').html('你擁有的能力點 : ' + (point - 1));
-        $('#SP_' + n).html(old + 1);
+    if (point - quantity >= 0) {
+        $('#user_skillPoint').html('你擁有的能力點 : ' + (point - quantity));
+        $('#SP_' + n).html(old + quantity);
     }
 }
 
