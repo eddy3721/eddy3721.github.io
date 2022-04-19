@@ -91,5 +91,95 @@ function item_eq(n) { //裝備 頭部:head 身體:body 腿部:foot 武器:weapon
                 "skills": []
             }
             return obj;
+        case 6: //史萊姆盾
+            obj = {
+                'name': '史萊姆盾',
+                "type": "weapon",
+                "intro": '史萊姆王國的制式盾牌，盾上的凹痕可以很好地匯引水流',
+                "HP": 0,
+                "MP": 0,
+                "ATK": 2,
+                "MATK": 0,
+                "DEF": 4,
+                "MDEF": 2,
+                "FLEE": 0,
+                "HIT": 0,
+                "STB": 0,
+                "ASPD": 0,
+                "skills": []
+            }
+            return obj;
+        case 7: //史萊姆禁衛大劍
+            obj = {
+                'name': '史萊姆禁衛大劍',
+                "type": "weapon",
+                "intro": '史萊姆王國入口看守者的大劍，上頭有多道凹槽',
+                "HP": 0,
+                "MP": 25,
+                "ATK": 8,
+                "MATK": 4,
+                "DEF": 2,
+                "MDEF": 0,
+                "FLEE": 0,
+                "HIT": 0,
+                "STB": 0,
+                "ASPD": 0,
+                "skills": []
+            }
+            return obj;
+        case 8: //菇菇帽
+            obj = {
+                'name': '菇菇帽',
+                "type": "head",
+                "intro": '你像極了一隻菇',
+                "HP": 15,
+                "MP": 15,
+                "ATK": 0,
+                "MATK": 0,
+                "DEF": 2,
+                "MDEF": 3,
+                "FLEE": 0,
+                "HIT": 0,
+                "STB": 0,
+                "ASPD": 0,
+                "skills": []
+            }
+            return obj;
+        case 9: //木棒
+            obj = {
+                'name': '木棒',
+                "type": "weapon",
+                "intro": '獸人等具有初級智慧的生物所使用的工具',
+                "HP": 0,
+                "MP": 0,
+                "ATK": 4,
+                "MATK": 0,
+                "DEF": 0,
+                "MDEF": 0,
+                "FLEE": 0,
+                "HIT": 0,
+                "STB": 0,
+                "ASPD": 0,
+                "skills": []
+            }
+            return obj;
+        case 10: //疾風之靴
+            obj = {
+                'name': '疾風之靴',
+                "type": "foot",
+                "intro": '飽含疾風之力的靴子',
+                "HP": 0,
+                "MP": 0,
+                "ATK": 4,
+                "MATK": 0,
+                "DEF": 4,
+                "MDEF": 2,
+                "FLEE": 3,
+                "HIT": 0,
+                "STB": 0,
+                "ASPD": 0,
+                "skills": []
+            }
+            return obj;
     }
 }
