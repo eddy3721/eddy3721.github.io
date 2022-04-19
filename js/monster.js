@@ -369,7 +369,7 @@ var M = {
                 "ASPD": 20,
                 "skills": [6, 22],
                 "drop": {
-                    "eq": 0,
+                    "eq": 6,
                     "map": 0,
                     "skill": 22
                 }
@@ -428,7 +428,7 @@ var M = {
                 "ASPD": 20,
                 "skills": [21, 22, 25],
                 "drop": {
-                    "eq": 0,
+                    "eq": 7,
                     "map": 0,
                     "skill": 25
                 }
@@ -447,7 +447,7 @@ var M = {
                 "ASPD": 20,
                 "skills": [21, 22, 25],
                 "drop": {
-                    "eq": 0,
+                    "eq": 7,
                     "map": 0,
                     "skill": 25
                 }
@@ -489,7 +489,7 @@ var M = {
                 "ASPD": 20,
                 "skills": [27],
                 "drop": {
-                    "eq": 0,
+                    "eq": 10,
                     "map": 0,
                     "skill": 27
                 }
@@ -509,7 +509,7 @@ var M = {
                 "ASPD": 20,
                 "skills": [27, 28],
                 "drop": {
-                    "eq": 0,
+                    "eq": 9,
                     "map": 0,
                     "skill": 28,
                 }
@@ -548,7 +548,7 @@ var M = {
                 "ASPD": 20,
                 "skills": [2, 30],
                 "drop": {
-                    "eq": 0,
+                    "eq": 8,
                     "map": 0,
                     "skill": 30
                 }
@@ -593,22 +593,22 @@ var M = {
                 }
             },
             {
-                "name": "蜂后",
+                "name": "疾風狼王",
                 "LV": 35,
-                "HP": 450,
-                "ATK": 40,
-                "MATK": 40,
-                "DEF": 32,
+                "HP": 500,
+                "ATK": 50,
+                "MATK": 30,
+                "DEF": 35,
                 "MDEF": 32,
-                "FLEE": 5,
+                "FLEE": 20,
                 "HIT": 10,
                 "STB": 70,
                 "ASPD": 20,
-                "skills": [29, 31, 32],
+                "skills": [39, 40, 41],
                 "drop": {
-                    "eq": 0,
+                    "eq": 10,
                     "map": 0,
-                    "skill": 31
+                    "skill": 39
                 }
             }
         ]
