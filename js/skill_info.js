@@ -276,21 +276,21 @@ function sk_info(n) {
             obj = {
                 'name': '奔雷',
                 "intro": '以奔雷之速對敵方發起爪擊',
-                "cost": 0
+                "cost": 15
             }
             return obj;
         case 40: //疾雷．牙通牙
             obj = {
                 'name': '疾雷．牙通牙',
                 "intro": '化身旋風，夾帶著閃電貫穿敵人',
-                "cost": 0
+                "cost": 20
             }
             return obj;
         case 41: //風之呼吸
             obj = {
                 'name': '風之呼吸',
                 "intro": '透過風的脈絡，吸取獵物的魔力',
-                "cost": 0
+                "cost": 10
             }
             return obj;
     }
