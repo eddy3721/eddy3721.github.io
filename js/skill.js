@@ -185,7 +185,6 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
 
             b['HP'] -= dmg;
             b['state'] = "暈眩";
-            i++;
 
             obj = {
                 'a': a,
@@ -959,6 +958,89 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
             msg += ' 對 ' + b['name'] + ' 造成了' + dmg + '點傷害</div>';
 
             b['HP'] -= dmg;
+
+            obj = {
+                'a': a,
+                'b': b,
+                'i': i,
+                "dmg": dmg,
+                "msg": msg
+            }
+            return obj;
+        case 39: //奔雷
+            dmg = Math.ceil(a['ATK'] * 1.5 + a['FLEE'] * 2);
+            info = getDamage(dmg, b['DEF'], a['STB'], a['HIT'], b['FLEE']);
+            dmg = info['dmg'];
+
+            msg += '<div class="flex report_blue"><div class="numberReportLine">' + i + '</div>';
+            msg += a['name'] + ' 使出了 奔雷!';
+            if (dmg == -1) {
+                msg += ' 但是被閃開了!';
+                return obj;
+            }
+            if (info['critical']) {
+                msg += ' 會心一擊!';
+            }
+            msg += ' 對 ' + b['name'] + ' 造成了' + dmg + '點傷害</div>';
+
+            b['HP'] -= dmg;
+            if (Math.floor(Math.random() * 100) + 1 > 50) {
+                b['state'] = "麻痺";
+            }
+            i++;
+
+            obj = {
+                'a': a,
+                'b': b,
+                'i': i,
+                "dmg": dmg,
+                "msg": msg
+            }
+            return obj;
+        case 40: //疾雷．牙通牙
+            msg += '<div class="flex report_blue"><div class="numberReportLine">' + i + '</div>';
+            msg += a['name'] + ' 使出了 疾雷．牙通牙!</div>';
+
+            for (let j = 1; j < 4; j++) {
+                dmg = Math.ceil(a['ATK'] * 1.15);
+                info = getDamage(dmg, b['DEF'] * 0.7, a['STB'], a['HIT'], b['FLEE']);
+                dmg = info['dmg'];
+
+                i++;
+                msg += '<div class="flex report_blue"><div class="numberReportLine">' + i + '</div>';
+                msg += '第' + j + '擊';
+                if (dmg == -1) {
+                    msg += ' 但是被閃開了!';
+                    return obj;
+                }
+                if (info['critical']) {
+                    msg += ' 會心一擊!';
+                }
+                msg += ' 對 ' + b['name'] + ' 造成了' + dmg + '點傷害</div>';
+
+                b['HP'] -= dmg;
+            }
+            obj = {
+                'a': a,
+                'b': b,
+                'i': i,
+                "dmg": dmg,
+                "msg": msg
+            }
+            return obj;
+        case 41: //風之呼吸
+            dmg = 0;
+
+            msg += '<div class="flex report_blue"><div class="numberReportLine">' + i + '</div>';
+            msg += a['name'] + ' 使出了 風之呼吸!';
+
+            msg += b['name'] + ' 的MP被吸走了!</div>';
+
+            if (b['MP'] - 10 >= 0) {
+                b['MP'] -= 20;
+            } else {
+                b['MP'] = 0;
+            }
 
             obj = {
                 'a': a,
