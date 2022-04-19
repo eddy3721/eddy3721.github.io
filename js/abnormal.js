@@ -105,5 +105,20 @@ function abnormalState(a, b, att, i) { //a:受異常方 b:施加方 att:who的�
                 'b': b
             }
             return obj;
+        case "麻痺":
+            msg += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
+            msg += a['name'] + ' 麻痺了! 動彈不得!</div>';
+
+            att = Math.abs(att - 1);
+            a['state'] = null;
+
+            obj = {
+                'attacker': att,
+                'i': i,
+                'msg': msg,
+                'a': a,
+                'b': b
+            }
+            return obj;
     }
 }
