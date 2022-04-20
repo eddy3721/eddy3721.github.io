@@ -293,5 +293,75 @@ function sk_info(n) {
                 "cost": 10
             }
             return obj;
+        case 42: //戰爭祭祀
+            obj = {
+                'name': '戰爭祭祀',
+                "intro": '古老的祭祀方式，可以提升攻擊力',
+                "cost": 12
+            }
+            return obj;
+        case 43: //扎根
+            obj = {
+                'name': '扎根',
+                "intro": '吸取大地中的精華，可以持續回復生命值',
+                "cost": 12
+            }
+            return obj;
+        case 44: //急走上頂
+            obj = {
+                'name': '急走上頂',
+                "intro": '懶，慢慢補',
+                "cost": 10
+            }
+            return obj;
+        case 45: //大地重擊
+            obj = {
+                'name': '大地重擊',
+                "intro": '懶，慢慢補',
+                "cost": 15
+            }
+            return obj;
+        case 46: //魔源重擊
+            obj = {
+                'name': '魔源重擊',
+                "intro": '懶，慢慢補',
+                "cost": 15
+            }
+            return obj;
+        case 47: //暴風
+            obj = {
+                'name': '暴風',
+                "intro": '懶，慢慢補',
+                "cost": 15
+            }
+            return obj;
+        case 48: //天空俯衝
+            obj = {
+                'name': '天空俯衝',
+                "intro": '懶，慢慢補',
+                "cost": 15
+            }
+            return obj;
+        case 49: //墮落魔牙
+            obj = {
+                'name': '墮落魔牙',
+                "intro": '懶，慢慢補',
+                "cost": 17
+            }
+            return obj;
+        case 50: //暴力打擊
+            obj = {
+                'name': '暴力打擊',
+                "intro": '懶，慢慢補',
+                "cost": 17
+            }
+            return obj;
+        case 51: //超暴力打擊
+            obj = {
+                'name': '超暴力打擊',
+                "intro": '懶，慢慢補',
+                "cost": 21
+            }
+            return obj;
     }
 }

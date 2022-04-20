@@ -181,5 +181,41 @@ function item_eq(n) { //裝備 頭部:head 身體:body 腿部:foot 武器:weapon
                 "skills": []
             }
             return obj;
+        case 11: //樹人守衛盔甲
+            obj = {
+                'name': '樹人守衛盔甲',
+                "type": "body",
+                "intro": '厚實的樹皮能提供絕佳的防禦，但多少會影響行動能力',
+                "HP": 50,
+                "MP": 5,
+                "ATK": 0,
+                "MATK": 0,
+                "DEF": 10,
+                "MDEF": 8,
+                "FLEE": -2,
+                "HIT": 0,
+                "STB": 0,
+                "ASPD": -2,
+                "skills": []
+            }
+            return obj;
+        case 12: //巨魔棍棒
+            obj = {
+                'name': '巨魔棍棒',
+                "type": "weapon",
+                "intro": '由堅硬岩石所製的巨型棍棒，聽說能使某個技能威力大增',
+                "HP": 0,
+                "MP": 0,
+                "ATK": 12,
+                "MATK": 0,
+                "DEF": 0,
+                "MDEF": 0,
+                "FLEE": 0,
+                "HIT": 0,
+                "STB": 0,
+                "ASPD": 0,
+                "skills": []
+            }
+            return obj;
     }
 }
