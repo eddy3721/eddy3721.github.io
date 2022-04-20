@@ -1032,7 +1032,7 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
             dmg = 0;
 
             msg += '<div class="flex report_blue"><div class="numberReportLine">' + i + '</div>';
-            msg += a['name'] + ' 使出了 風之呼吸!';
+            msg += a['name'] + ' 使出了 風之呼吸! ';
 
             msg += b['name'] + ' 的MP被吸走了!</div>';
 
