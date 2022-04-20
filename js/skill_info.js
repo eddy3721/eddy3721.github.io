@@ -72,7 +72,7 @@ function sk_info(n) {
             obj = {
                 'name': '貓讚拳',
                 "intro": '貓貓都忍不住給你一個讚',
-                "cost": 10
+                "cost": 0
             }
             return obj;
         case 11: //放火
