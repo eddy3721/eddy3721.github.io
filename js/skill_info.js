@@ -363,5 +363,26 @@ function sk_info(n) {
                 "cost": 21
             }
             return obj;
+        case 52: //野性狂熱
+            obj = {
+                'name': '野性狂熱',
+                "intro": '懶，慢慢補',
+                "cost": 25
+            }
+            return obj;
+        case 53: //原始震盪
+            obj = {
+                'name': '原始震盪',
+                "intro": '懶，慢慢補',
+                "cost": 25
+            }
+            return obj;
+        case 54: //恐懼凝視
+            obj = {
+                'name': '恐懼凝視',
+                "intro": '懶，慢慢補',
+                "cost": 18
+            }
+            return obj;
     }
 }
