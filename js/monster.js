@@ -625,7 +625,7 @@ var M = {
                 "ASPD": 20,
                 "skills": [42, 43],
                 "drop": {
-                    "eq": 0,
+                    "eq": 11,
                     "map": 5,
                     "skill": 42
                 }
@@ -726,7 +726,7 @@ var M = {
                 "ASPD": 20,
                 "skills": [50, 51],
                 "drop": {
-                    "eq": 0,
+                    "eq": 12,
                     "map": 0,
                     "skill": 50
                 }
@@ -745,7 +745,7 @@ var M = {
                 "ASPD": 20,
                 "skills": [50, 51],
                 "drop": {
-                    "eq": 0,
+                    "eq": 12,
                     "map": 0,
                     "skill": 50
                 }
