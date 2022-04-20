@@ -307,9 +307,9 @@ function sk_info(n) {
                 "cost": 12
             }
             return obj;
-        case 44: //急走上頂
+        case 44: //急速上頂
             obj = {
-                'name': '急走上頂',
+                'name': '急速上頂',
                 "intro": '懶，慢慢補',
                 "cost": 10
             }
