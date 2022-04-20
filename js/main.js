@@ -323,3 +323,32 @@ function time_check(n) {
         return false;
     }
 }
+
+function get_gift() {
+    let gift = 4;
+    let bag = JSON.parse(decode(localStorage.getItem("item"), key));
+
+    let eq_type = item_eq(gift)['type'];
+    if (bag[eq_type].indexOf(gift) == -1) {
+        bag[eq_type].push(gift);
+    }
+
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 2500,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    });
+
+    Toast.fire({
+        icon: 'success',
+        title: '獲取成功!'
+    });
+
+    localStorage.setItem("item", encode(JSON.stringify(bag), key));
+}
