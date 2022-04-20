@@ -1111,7 +1111,7 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
             }
             return obj;
         case 45: //大地重擊
-            dmg = Math.ceil(a['ATK'] * 1.5 * a['DEF'] * 1.3);
+            dmg = Math.ceil(a['ATK'] * 1.5 + a['DEF'] * 1.3);
             info = getDamage(dmg, b['DEF'], a['STB'], a['HIT'], b['FLEE']);
             dmg = info['dmg'];
 
@@ -1137,7 +1137,7 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
             }
             return obj;
         case 46: //魔源重擊
-            dmg = Math.ceil(a['MATK'] * 1.6 * a['MDEF'] * 1.3);
+            dmg = Math.ceil(a['MATK'] * 1.6 + a['MDEF'] * 1.3);
             info = getDamage(dmg, b['DEF'], a['STB'], a['HIT'], b['FLEE']);
             dmg = info['dmg'];
 
