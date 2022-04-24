@@ -973,7 +973,7 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
             dmg = info['dmg'];
 
             msg += '<div class="flex report_blue"><div class="numberReportLine">' + i + '</div>';
-            msg += a['name'] + ' 使出了 奔雷!';
+            msg += a['name'] + ' 使出了 小丑奔雷!';
             if (dmg == -1) {
                 msg += ' 但是被閃開了!';
                 return obj;
