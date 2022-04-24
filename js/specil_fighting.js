@@ -156,12 +156,6 @@ async function special_fighting() {
             content += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
             content += user['name'] + ' 戰敗了! ' + m['name'] + '還有 ' + m['HP'] + ' 點血量</div>';
             i++;
-
-            //戰敗懲罰
-            getMoney = Math.ceil((Math.abs(m['LV'] - user['LV'])) * m['LV'] * -0.2);
-            content += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
-            content += '你損失了 ' + (getMoney * -1) + ' 眾神幣</div>';
-            money_update(getMoney);
         }
     }
 
@@ -315,12 +309,6 @@ async function special_fighting2() {
             content += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
             content += user['name'] + ' 戰敗了! ' + m['name'] + '還有 ' + m['HP'] + ' 點血量</div>';
             i++;
-
-            //戰敗懲罰
-            getMoney = Math.ceil((Math.abs(m['LV'] - user['LV'])) * m['LV'] * -0.2);
-            content += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
-            content += '你損失了 ' + (getMoney * -1) + ' 眾神幣</div>';
-            money_update(getMoney);
         }
     }
 
