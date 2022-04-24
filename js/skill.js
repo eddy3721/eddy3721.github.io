@@ -1370,5 +1370,65 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
                 "msg": msg
             }
             return obj;
+        case 55: //無限一刀流
+            rand = Math.floor(Math.random() * 5) + 1;
+
+            info = getDamage(dmg, b['DEF'], a['STB'], a['HIT'], b['FLEE']);
+            dmg = info['dmg'];
+
+            msg += '<div class="flex report_blue"><div class="numberReportLine">' + i + '</div>';
+            msg += a['name'] + ' :「無限一刀流 加法，」</div>';
+            j = 1;
+
+            for (j = 1; j <= rand; j++) {
+                dmg = Math.ceil(a['ATK'] * 0.8);
+                info = getDamage(dmg, b['DEF'], a['STB'], a['HIT'], b['FLEE']);
+                dmg = info['dmg'];
+
+                i++;
+                msg += '<div class="flex report_blue"><div class="numberReportLine">' + i + '</div>';
+                msg += a['name'] + ' :「' + j + '刀!」，';
+                if (dmg == -1) {
+                    msg += ' 但是被閃開了!';
+                    return obj;
+                }
+                if (info['critical']) {
+                    msg += ' 會心一擊!';
+                }
+                msg += ' 對 ' + b['name'] + ' 造成了' + dmg + '點傷害</div>';
+
+                b['HP'] -= dmg;
+            }
+
+            if (Math.floor(Math.random() * 10) + 1 <= 3) {
+                dmg = Math.ceil(a['ATK'] * 0.8) * (j - 1);
+                info = getDamage(dmg, b['DEF'], a['STB'], a['HIT'], b['FLEE']);
+                dmg = info['dmg'];
+                msg += '<div class="flex report_red"><div class="numberReportLine">' + i + '</div>';
+                msg += a['name'] + ' :「無限一刀流 乘法，」</div>';
+                i++;
+                msg += '<div class="flex report_red"><div class="numberReportLine">' + i + '</div>';
+                msg += a['name'] + ' :「' + (j - 1) * 2 + '刀!」，';
+
+                if (dmg == -1) {
+                    msg += ' 但是被閃開了!';
+                    return obj;
+                }
+                if (info['critical']) {
+                    msg += ' 會心一擊!';
+                }
+                msg += ' 對 ' + b['name'] + ' 造成了' + dmg + '點傷害</div>';
+
+                b['HP'] -= dmg;
+            }
+
+            obj = {
+                'a': a,
+                'b': b,
+                'i': i,
+                "dmg": dmg,
+                "msg": msg
+            }
+            return obj;
     }
 }

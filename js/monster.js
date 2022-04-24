@@ -273,7 +273,45 @@ var M = {
                     "map": 0,
                     "skill": 33
                 }
-            }
+            },
+            {
+                "name": "仿生淚滴",
+                "LV": 10,
+                "HP": 0,
+                "ATK": 0,
+                "MATK": 0,
+                "DEF": 0,
+                "MDEF": 0,
+                "FLEE": 0,
+                "HIT": 0,
+                "STB": 0,
+                "ASPD": 0,
+                "skills": [],
+                "drop": {
+                    "eq": 0,
+                    "map": 0,
+                    "skill": 0
+                }
+            },
+            {
+                "name": "米霍尼",
+                "LV": 66,
+                "HP": 5000,
+                "ATK": 200,
+                "MATK": 200,
+                "DEF": 110,
+                "MDEF": 110,
+                "FLEE": 10,
+                "HIT": 30,
+                "STB": 70,
+                "ASPD": 30,
+                "skills": [55],
+                "drop": {
+                    "eq": 0,
+                    "map": 0,
+                    "skill": 0
+                }
+            },
         ]
     },
     "史萊姆王國-入口": {
