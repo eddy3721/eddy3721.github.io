@@ -134,6 +134,23 @@ async function special_fighting() {
             content += '你獲得了 ' + (getEXP + 10) + ' 眾神幣</div>';
             EXP_update(getEXP);
             money_update(getEXP + 10);
+
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 1000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'success',
+                title: '成功討伐「' + m['name'] + '」'
+            });
         } else {
             i++;
             content += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
@@ -276,6 +293,23 @@ async function special_fighting2() {
             content += '你獲得了 ' + (getEXP + 10) + ' 眾神幣</div>';
             EXP_update(getEXP);
             money_update(getEXP + 10);
+
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 1000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'success',
+                title: '成功討伐「' + m['name'] + '」'
+            });
         } else {
             i++;
             content += '<div class="flex"><div class="numberReportLine">' + i + '</div>';
