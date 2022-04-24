@@ -1400,7 +1400,7 @@ function sk(n, i, a, b) { //a:使用技能方 b:受技能方
                 b['HP'] -= dmg;
             }
 
-            if (Math.floor(Math.random() * 10) + 1 <= 3) {
+            if (Math.floor(Math.random() * 10) + 1 <= 4) {
                 dmg = Math.ceil(a['ATK'] * 0.8) * (j - 1);
                 info = getDamage(dmg, b['DEF'], a['STB'], a['HIT'], b['FLEE']);
                 dmg = info['dmg'];
