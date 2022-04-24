@@ -304,7 +304,7 @@ var M = {
                 "FLEE": 10,
                 "HIT": 30,
                 "STB": 70,
-                "ASPD": 30,
+                "ASPD": 20,
                 "skills": [55],
                 "drop": {
                     "eq": 0,
