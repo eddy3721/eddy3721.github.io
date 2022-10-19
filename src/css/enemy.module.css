@@ -1,0 +1,123 @@
+.enemyMapButton {
+    border: 3px solid #fff;
+    border-radius: 20px;
+    background: #1a202c;
+    color: #fff;
+    margin: 10px;
+    padding: 5px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.15s ease-out 0s;
+    min-width: 84px;
+}
+
+.enemyMapButton:hover {
+    background: #2f4763;
+}
+
+.enemyMapButton:focus {
+    background: #2f4763;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+.enemyList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.enemyDetail {
+    width: 35%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    margin: 5px 20px 20px 20px;
+    padding: 5px 20px 20px 20px;
+    background-color: rgba(0, 0, 0, .25);
+}
+
+.drop {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.drop>div {
+    min-width: 30px;
+    margin: 5px;
+}
+
+.drop>div>div {
+    border: none;
+    padding: 5px;
+    border-radius: 10px;
+    color: #ffffff;
+    user-select: none;
+    background-color: #1a202c;
+}
+
+.popover {
+    border: 1px solid #fff!important;
+    border-radius: 10px;
+    padding: 1px 10px;
+    position: absolute;
+    z-index: 50;
+    background-color: rgba(13, 20, 29, 0.9);
+    color: #fff;
+    max-width: 400px;
+    max-height: 300px;
+    pointer-events: none;
+}
+
+.popoverApp {
+    display: none;
+    width: 100%!important;
+    border-top: 1px solid #fff!important;
+    position: fixed!important;
+    bottom: 0!important;
+    z-index: 50;
+    background-color: rgba(13, 20, 29, 0.9)!important;
+    color: #fff!important;
+    pointer-events: none;
+}
+
+.pointEventNone {
+    pointer-events: none;
+}
+
+.skillDetail {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    margin: 5px 20px 20px 20px;
+    padding: 5px 20px 20px 20px;
+    background-color: rgba(0, 0, 0, .25);
+}
+
+.reportNum {
+    color: rgb(153, 153, 153);
+    user-select: none;
+    width: 30px;
+}
+
+.report {
+    display: flex;
+    color: #90b4f7;
+}
+
+@media (max-width: 768px) {
+    .enemyDetail {
+        width: 30%;
+    }
+    .popover {
+        display: none;
+    }
+    .popoverApp {
+        display: block;
+    }
+}
+
+@media (max-width: 576px) {
+    .enemyDetail {
+        width: 100%;
+        margin: 5px 40px 20px 40px;
+    }
+}

@@ -1,0 +1,95 @@
+.item {
+    font-size: 18px;
+    text-align: left;
+    padding: 10px 0px;
+    cursor: pointer;
+    transition: all 0.3s ease-out 0s;
+}
+
+.item+.item {
+    border-top: 1px solid rgb(144, 180, 247, 0.5);
+}
+
+.item:hover {
+    background-color: #2f4763;
+}
+
+.item>div>div {
+    font-size: 16px;
+    margin-top: 10px;
+    padding-left: 42px;
+}
+
+.enemyMapButton {
+    border: 3px solid #fff;
+    border-radius: 20px;
+    background: #1a202c;
+    color: #fff;
+    margin: 10px;
+    padding: 5px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.15s ease-out 0s;
+    min-width: 84px;
+}
+
+.enemyMapButton:hover {
+    background: #2f4763;
+}
+
+.enemyMapButton:focus {
+    background: #2f4763;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+.search {
+    position: fixed;
+    z-index: 100;
+    right: 100px;
+    top: 20px;
+}
+
+.searchBox {
+    width: 20vw;
+    height: 50px;
+    background: #2b303b;
+    border: none;
+    font-size: 18px;
+    float: left;
+    color: #63717f;
+    padding-left: 20px;
+    border-radius: 5px;
+}
+
+.searchBox:focus {
+    outline-width: 0;
+}
+
+.dropPlace {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.dropPlace>div {
+    margin: 10px;
+}
+
+@media (max-width: 768px) {
+    .search {
+        left: 25px;
+        top: 25px;
+    }
+    .searchBox {
+        width: 20vw;
+        height: 40px;
+        background: #2b303b;
+        border: none;
+        font-size: 18px;
+        float: left;
+        color: #63717f;
+        padding-left: 20px;
+        border-radius: 5px;
+    }
+}
+
+@media (max-width: 576px) {}
